@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'myfont';
+    src: url(../Fonts/Ubuntu-Regular.otf),
+    url(../Fonts/Ubuntu-Regular.ttf),
+    url(../Fonts/Ubuntu-Regular.woff),
+    url(../Fonts/Ubuntu-Regular.woff2);
+}
+*{
+    font-family: 'myfont';
+}
+:root {
+  --primary--color: #434578;
+}
+.Loginpage_container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+}
+
+.Loginpage_container > .row > div:nth-child(1) > img {
+  height: 400px;
+  width: 100%;
+}
+.Login_Btn {
+  background-color: var(--primary--color) !important;
+  font-weight: bold !important;
+}
+.bgclr{
+  background-color: #ebebeb !important;
+  height: 100%;
+  padding: 17px;
+  width: 100%;
+}
+.bgclr>div>div{
+border-radius: 15px;
+}
+.tablerowcolor{
+  background-color: var(--primary--color) !important;
+  color: #fff;
+}
+.Loader{
+  
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 50px;
+} 
