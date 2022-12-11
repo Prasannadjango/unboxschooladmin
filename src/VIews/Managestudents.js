@@ -4,7 +4,6 @@ import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
-
 import CircularProgress from '@mui/material/CircularProgress';
 function Managestudentspage() {
 
@@ -132,10 +131,8 @@ function Managestudentspage() {
                         <div className='p-3 d-flex justify-content-between'>
                             <h3>Student list</h3>
                             <div className="col-5">
-
                                 <Form.Control type="text" placeholder="Search..."
                                     onChange={e => setQuery(e.target.value)} className='py-2  ' />
-
                             </div>
 
                         </div>

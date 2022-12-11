@@ -1,11 +1,15 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
+import CircularProgress from '@mui/material/CircularProgress';
 function Managesectionpage() {
     const [Section, setSection] = useState("");
     const [Studentsection, setStudentsection] = useState([]);
+    const [query, setQuery] = useState('');
+    const [retrieving, setRetrieving] = useState(false);
+    const [show, setShow] = useState(false);
 
     const Addsection = async (e) => {
         e.preventDefault();
@@ -20,7 +24,7 @@ function Managesectionpage() {
         }
     }
     const fetchstudentsection = async () => {
-
+        setRetrieving(true)
         await getDocs(collection(db, "Newsection"))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
@@ -28,12 +32,23 @@ function Managesectionpage() {
                 setStudentsection(newData);
                 console.log(Studentsection, newData);
             })
+        setTimeout(() => {
+            setRetrieving(false)
+            setShow(!show);
+        }, 1200)
 
     }
 
     useEffect(() => {
         fetchstudentsection();
     }, [])
+
+    const search = (data) => {
+        return data.filter(
+            (item) =>
+                item.section.toLowerCase().includes(query) 
+            );
+    }
     return (
         <>
             <div className="bgclr d-flex">
@@ -41,7 +56,10 @@ function Managesectionpage() {
                     <div className="bg-white">
                         <div className='p-4 d-flex justify-content-between'>
                             <h3>Section-list</h3>
-
+                            <div className="col-5">
+                                <Form.Control type="text" placeholder="Search..."
+                                    onChange={e => setQuery(e.target.value)} className='py-2  ' />
+                            </div>
                         </div>
                         <Table striped bordered hover >
                             <thead className="tablerowcolor">
@@ -52,22 +70,28 @@ function Managesectionpage() {
                                     <th className="col-2">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {
-                                    Studentsection?.map((studentsection, i) => (
+                            <tbody className="position-relative">
+                                {retrieving ? (
+                                    <div className='Loader'>
+                                        <CircularProgress color="primary" />
+                                    </div>
+                                ) :
+                                    (
+                                        search(Studentsection)?.map((studentsection, i) => (
 
-                                        <tr key={i}>
-                                            <td>{i}</td>
-                                            <td>{studentsection.section}</td>
+                                            <tr key={i}>
+                                                <td>{i}</td>
+                                                <td>{studentsection.section}</td>
 
-                                            <td>
-                                                <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-                                                <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
+                                                    <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
+                                                </td>
+                                            </tr>
 
 
-                                    ))
+                                        ))
+                                    )
                                 }
 
                             </tbody>
