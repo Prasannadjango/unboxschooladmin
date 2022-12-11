@@ -3,9 +3,11 @@ import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
-
+import CircularProgress from '@mui/material/CircularProgress';
 function Manageclasspage() {
-
+    const [query, setQuery] = useState('');
+    const [retrieving, setRetrieving] = useState(false);
+    const [show, setShow] = useState(false);
     const [Class, setClass] = useState("");
 
     const [Studentclass, setStudentclass] = useState([]);
@@ -24,7 +26,7 @@ function Manageclasspage() {
     }
 
     const fetchstudentclass = async () => {
-
+        setRetrieving(true)
         await getDocs(collection(db, "Newclass"))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
@@ -32,12 +34,23 @@ function Manageclasspage() {
                 setStudentclass(newData);
                 console.log(Studentclass, newData);
             })
-
+        setTimeout(() => {
+            setRetrieving(false)
+            setShow(!show);
+        }, 1200)
     }
 
     useEffect(() => {
         fetchstudentclass();
     }, [])
+
+    const search = (data) => {
+        return data.filter(
+            (item) =>
+                item.class.toLowerCase().includes(query)
+               
+        );
+    }
     return (
         <>
             <div className="bgclr d-flex">
@@ -45,7 +58,12 @@ function Manageclasspage() {
                     <div className="bg-white">
                         <div className='p-4 d-flex justify-content-between'>
                             <h3>Class list</h3>
+                            <div className="col-5">
 
+                                <Form.Control type="text" placeholder="Search..."
+                                    onChange={e => setQuery(e.target.value)} className='py-2  ' />
+
+                            </div>
                         </div>
                         <Table striped bordered hover >
                             <thead className="tablerowcolor">
@@ -56,9 +74,13 @@ function Manageclasspage() {
                                     <th className="col-2">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {
-                                    Studentclass?.map((studentclass, i) => (
+                            <tbody className="position-relative">
+                                {retrieving ? (
+                                    <div className='Loader'>
+                                        <CircularProgress color="primary" />
+                                    </div>
+                                ) :
+                                    search(Studentclass)?.map((studentclass, i) => (
 
                                         <tr key={i}>
                                             <td>{i}</td>

@@ -4,7 +4,8 @@ import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
-import { FormControl } from "@mui/material";
+
+import CircularProgress from '@mui/material/CircularProgress';
 function Managestudentspage() {
 
 
@@ -28,6 +29,8 @@ function Managestudentspage() {
 
 
     const [query, setQuery] = useState('');
+    const [retrieving, setRetrieving] = useState(false);
+    const [show, setShow] = useState(false);
     // create new student
 
     const Addstudent = async (e) => {
@@ -57,7 +60,7 @@ function Managestudentspage() {
     //  read student data
 
     const fetchstudentdata = async () => {
-
+        setRetrieving(true)
         await getDocs(collection(db, "Newstudent"))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
@@ -65,6 +68,10 @@ function Managestudentspage() {
                 setStudents(newData);
                 console.log(Students, newData);
             })
+        setTimeout(() => {
+            setRetrieving(false)
+            setShow(!show);
+        }, 1200)
 
     }
 
@@ -92,8 +99,6 @@ function Managestudentspage() {
     }, [])
 
     // fetch student class 
-
-
     const fetchstudentclass = async () => {
 
         await getDocs(collection(db, "Newclass"))
@@ -117,10 +122,6 @@ function Managestudentspage() {
                 item.studentlastname.toLowerCase().includes(query) ||
                 item.studentsection.toLowerCase().includes(query) ||
                 item.studentClass.toLowerCase().includes(query)
-
-
-            //   item.studentsection.toLowerCase().includes(query)
-
         );
     }
     return (
@@ -151,24 +152,30 @@ function Managestudentspage() {
                                     <th >Actions</th>
                                 </tr>
                             </thead>
-                            <tbody >
-                                {
-                                    search(Students).map((student, i) => (
+                            <tbody className="position-relative">
+                                {retrieving ? (
+                                    <div className='Loader'>
+                                        <CircularProgress color="primary" />
+                                    </div>
+                                ) :
+                                    (
+                                        search(Students).map((student, i) => (
 
-                                        <tr key={i}>
-                                            <td>{i}</td>
-                                            <td>{student.studentfirstname}</td>
-                                            <td>{student.studentlastname}</td>
-                                            <td>{student.studentClass}</td>
-                                            <td>{student.studentsection}</td>
-                                            <td>
-                                                <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-                                                <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-                                            </td>
-                                        </tr>
+                                            <tr key={i}>
+                                                <td>{i}</td>
+                                                <td>{student.studentfirstname}</td>
+                                                <td>{student.studentlastname}</td>
+                                                <td>{student.studentClass}</td>
+                                                <td>{student.studentsection}</td>
+                                                <td>
+                                                    <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
+                                                    <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
+                                                </td>
+                                            </tr>
 
 
-                                    ))
+                                        ))
+                                    )
                                 }
 
                             </tbody>

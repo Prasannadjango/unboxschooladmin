@@ -8,8 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 function Manageteacherspage() {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
 
     const [Teachers, setTeachers] = useState([]);
     // Add teacher form variables
@@ -28,7 +27,7 @@ function Manageteacherspage() {
     const [teacherPincode, setTeacherPincode] = useState("");
 
     const [query, setQuery] = useState('');
-    const [retrieving, setRetrieving] = useState(false)
+    const [retrieving, setRetrieving] = useState(false);
     const search = (data) => {
         return data.filter(
             (item) =>
