@@ -9,24 +9,13 @@ import { db } from "../firebase-config";
 function Loginpage() {
     const [schooldata, setschooldata] = useState([]);
     const navigate = useNavigate();
+    const [Schoolinfo, setschoolinfo] = useState([]);
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [authenticated, setauthenticated] = useState(
         localStorage.getItem(localStorage.getItem("authenticated") || false)
     );
-    const users = [{ email: "admin@gmail.com", password: "12345" }];
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const account = users.find((user) => user.email === email);
-        if (account && account.password === password) {
-            localStorage.setItem("authenticated", true);
-            navigate("/home");
-        }
-        else {
-            alert('incorrect username and password');
-        }
-    };
-
+    const [data, setdata] = useState([]);
     const fetchschooldata = async () => {
 
         await getDocs(collection(db, "Newschool"))
@@ -34,7 +23,11 @@ function Loginpage() {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setschooldata(newData);
-                console.log(schooldata, newData);
+
+
+
+
+
             })
 
     }
@@ -43,10 +36,56 @@ function Loginpage() {
         fetchschooldata();
 
     }, [])
- 
-   
 
+    // Schoolinfo?.map((schoolinfo, i) => (
+
+    //     <tr key={i}>
+    //         <td>{i}</td>
+    //         <td>{studentclass.class}</td>
+
+    //         <td>
+    //             <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
+    //             <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
+    //         </td>
+    //     </tr>
+
+
+    // ))
+    const users = [{
+        email: "admin@gmail.com", password: "12345"
+    }];
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        checkUser();
+        let localValue=localStorage.getItem("authenticated");
+        console.log('function',localValue); 
+        if(localValue === "invalid"){
+            alert('error users');
+            console.log(localValue);
+        }
+    };
+
+    const checkUser=()=>{
        
+        {
+            schooldata?.map((studentclass,i) => {
+
+                if (studentclass.schoolemail === email && studentclass.schoolpassword === password) {
+                    localStorage.setItem("authenticated", true);
+                    navigate("/home");
+                    
+                }
+                else{
+                    localStorage.setItem("authenticated",'invalid');
+                }
+               
+            })
+        }
+    }
+
+
+
+
     return (
         <>
             <div className="Loginpage_container px-4">
@@ -71,7 +110,7 @@ function Loginpage() {
                                     name="Password"
                                     onChange={(e) => setpassword(e.target.value)} />
                             </div>
-                            <Button variant="contained" type='sumbit' className='w-100 py-3 text-uppercase Login_Btn'>Login</Button>
+                            <Button variant="contained" type='sumbit' className='w-100 py-3 text-uppercase Login_Btn' >Login</Button>
                         </Form>
                     </Col>
                 </Row>
