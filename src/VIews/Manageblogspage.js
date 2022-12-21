@@ -4,11 +4,11 @@ import { Table, Button, Form, Col, Row } from 'react-bootstrap';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "../firebase-config";
 import { toast } from "react-toastify";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 
 
 export default function AddArticle() {
-    const [user] = useAuthState(auth);
+   
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -25,7 +25,8 @@ export default function AddArticle() {
         setFormData({ ...formData, image: e.target.files[0] });
     };
 
-    const handlePublish = () => {
+    const handlePublish = (e) => {
+        e.preventDefault();
         if (!formData.title || !formData.description || !formData.image) {
             alert("Please fill all the fields");
             return;
@@ -41,9 +42,7 @@ export default function AddArticle() {
         uploadImage.on(
             "state_changed",
             (snapshot) => {
-                const progressPercent = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
+              
 
             },
             (err) => {
@@ -57,7 +56,7 @@ export default function AddArticle() {
                 });
 
                 getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-                    const articleRef = collection(db, "New Blogs");
+                    const articleRef = collection(db,"NewBlogs");
                     addDoc(articleRef, {
                         title: formData.title,
                         description: formData.description,
