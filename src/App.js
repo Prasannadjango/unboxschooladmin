@@ -21,8 +21,8 @@ function App() {
         <ProSidebarProvider>
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<Loginpage/>} /> */}
-              <Route path='/' element={<Dashboard/>}/>
+              <Route path="/" element={<Loginpage/>} />
+              <Route path='/home' element={<Dashboard/>}/>
               <Route path='/Manageteachers' element={<Manageteachers/>}/>
               <Route path='/Managestudents' element={<Managestudents/>}/>
               <Route path='/Manageclass' element={<Manageclass/>}/>
