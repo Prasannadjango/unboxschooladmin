@@ -1,19 +1,28 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 import Sidemenu from "../components/Sidebar";
 import Managesubjectspage from "../VIews/Managesubjectspage";
+import { Navigate } from "react-router-dom";
+
+function Managesubjects() {
+    const Getautheticate = localStorage.getItem('login');
+
+    if (Getautheticate === 'true') {
+        return (
+            <>
+                <Navbar />
+                <div className="d-flex pt-as">
+                    <Sidemenu />
+                    <Managesubjectspage />
+                </div>
+
+            </>
+        );
+    }
+    else {
+        return <Navigate to="/" replace />
+    }
 
 
-function Managesubjects(){
-    
-    return(
-        <>
-            <div className="d-flex">
-            <Sidemenu/>
-            <Managesubjectspage/>
-            </div>
-
-        </>
-    );
-   
 }
 export default Managesubjects;

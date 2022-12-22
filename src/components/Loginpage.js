@@ -3,88 +3,38 @@ import { useNavigate } from "react-router-dom";
 import { Row, Col, Form } from "react-bootstrap";
 import Loginpageimg from '../Assets/Images/Logoimage.svg';
 import { TextField, Button } from '@mui/material';
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+  
+  } from "firebase/auth";
+  import { app } from '../firebase-config';
 
 function Loginpage() {
-    const [schooldata, setschooldata] = useState([]);
     const navigate = useNavigate();
-    const [Schoolinfo, setschoolinfo] = useState([]);
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
-    const [authenticated, setauthenticated] = useState(
-        localStorage.getItem(localStorage.getItem("authenticated") || false)
-    );
-    const [data, setdata] = useState([]);
-    const fetchschooldata = async () => {
-
-        await getDocs(collection(db, "Newschool"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setschooldata(newData);
-
-
-
-
-
-            })
-
-    }
-
-    useEffect(() => {
-        fetchschooldata();
-
-    }, [])
-
-    // Schoolinfo?.map((schoolinfo, i) => (
-
-    //     <tr key={i}>
-    //         <td>{i}</td>
-    //         <td>{studentclass.class}</td>
-
-    //         <td>
-    //             <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-    //             <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-    //         </td>
-    //     </tr>
-
-
-    // ))
-    const users = [{
-        email: "admin@gmail.com", password: "12345"
-    }];
-    const handleSubmit = (e) => {
+    const auth = getAuth(app);
+    const signin = (e) =>{
         e.preventDefault();
-        checkUser();
-        let localValue=localStorage.getItem("authenticated");
-        console.log('function',localValue); 
-        if(localValue === "invalid"){
-            alert('error users');
-            console.log(localValue);
-        }
-    };
-
-    const checkUser=()=>{
-       
-        {
-            schooldata?.map((studentclass,i) => {
-
-                if (studentclass.schoolemail === email && studentclass.schoolpassword === password) {
-                    localStorage.setItem("authenticated", true);
-                    navigate("/home");
-                    
-                }
-                else{
-                    localStorage.setItem("authenticated",'invalid');
-                }
-               
-            })
-        }
-    }
-
-
-
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          localStorage.setItem('login','true');
+          console.log(user);
+          
+           navigate('/home');
+           
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+           alert('invalid user-name and password')
+        });
+      
+      }
 
     return (
         <>
@@ -95,7 +45,7 @@ function Loginpage() {
                         <img src={Loginpageimg} />
                     </Col>
                     <Col >
-                        <Form className='Login_form' onSubmit={handleSubmit}>
+                        <Form className='Login_form' onSubmit={signin}>
                             <h3 className='pb-3 fw-bold'>Login</h3>
                             <div>
                                 <TextField id="outlined-basic" label="E-mail" variant="outlined" className='w-100 '
