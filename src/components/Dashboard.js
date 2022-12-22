@@ -1,4 +1,5 @@
 import React from "react";
+import Homepage from "../VIews/homepage";
 import Navbar from "./Navbar";
 import Sidemenu from "./Sidebar";
 
@@ -9,7 +10,9 @@ function Dashboard() {
         <>
              <Navbar/>
              <div className="d-flex pt-as">
-             <Sidemenu/>
+              
+             <Sidemenu />
+             <Homepage/>
              </div>
         </>
     );

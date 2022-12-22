@@ -73,3 +73,120 @@ table{
 .pt-as{
    padding-top: 68px;
 }
+.Dashboard_card,
+.Dashboard_card2,
+.Dashboard_card1,
+.Dashboard_card3,
+.Dashboard_card4,
+.Dashboard_card5
+{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 15px;
+  height: max-content;
+  padding: 10px;
+}
+.icons_Container{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(29, 173, 209);
+  border-radius: 50px;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+}
+.icons_Container1{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(46, 224, 70);
+  border-radius: 50px;
+  color: white;
+  font-size: 26px;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+}
+.icons_Container2{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(218, 57, 35);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+  font-size: 25px;
+}
+.icons_Container3{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(116, 35, 170);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+  font-size: 25px;
+}
+.icons_Container4{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(170, 134, 35);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+  font-size: 25px;
+}
+.icons_Container5{
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(22, 163, 121);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  top: -20%;
+  right: 15px;
+  font-size: 25px;
+}
+.Dashboard_card5>div>h4{
+  color: rgb(22, 163, 121);
+  font-weight: bold;
+}
+.Dashboard_card>div>h4{
+  color: rgb(29, 173, 209);
+  font-weight: bold;
+}
+.Dashboard_card1>div>h4{
+  color: rgb(46, 224, 70);
+  font-weight: bold;
+}
+.Dashboard_card2>div>h4{
+  color: rgb(218, 57, 35);
+  font-weight: bold;
+}
+.Dashboard_card4>div>h4{
+  color: rgb(170, 134, 35);
+  font-weight: bold;
+}
+.Dashboard_card3>div>h4{
+  color: rgb(116, 35, 170);
+  font-weight: bold;
+}
+.pt-37{
+  padding-top: 37px;
+}
