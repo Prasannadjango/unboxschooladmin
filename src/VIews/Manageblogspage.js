@@ -1,14 +1,41 @@
-import React, { useState } from "react";
-import { Timestamp, collection, addDoc } from "firebase/firestore";
-import { Table, Button, Form, Col, Row } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Timestamp, collection, addDoc, getDocs } from "firebase/firestore";
+import { Button, Form, Col, Row, Card } from 'react-bootstrap';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage, db, auth } from "../firebase-config";
-import { toast } from "react-toastify";
-
-
+import { storage, db } from "../firebase-config";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AddArticle() {
-   
+
+
+    const [blogs, setBlogs] = useState(['']);
+
+
+    const [query, setQuery] = useState('');
+    const [retrieving, setRetrieving] = useState(false);
+    const [show, setShow] = useState(false);
+    // create new student
+
+    const fetchstudentdata = async () => {
+        setRetrieving(true)
+        await getDocs(collection(db, "NewBlogs"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setBlogs(newData);
+                console.log(blogs, newData);
+            })
+        setTimeout(() => {
+            setRetrieving(false)
+            setShow(!show);
+        }, 1200)
+
+    }
+
+    useEffect(() => {
+        fetchstudentdata();
+    }, [])
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -42,7 +69,7 @@ export default function AddArticle() {
         uploadImage.on(
             "state_changed",
             (snapshot) => {
-              
+
 
             },
             (err) => {
@@ -56,7 +83,7 @@ export default function AddArticle() {
                 });
 
                 getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-                    const articleRef = collection(db,"NewBlogs");
+                    const articleRef = collection(db, "NewBlogs");
                     addDoc(articleRef, {
                         title: formData.title,
                         description: formData.description,
@@ -82,13 +109,45 @@ export default function AddArticle() {
 
             <div className="bgclr d-flex">
                 <div className="col-7 me-2">
-                    <div className="bg-white">
-                     
+                    <div className="bg-white p-3  ">
+
+                        <Row className='position-relative'>
+                            {retrieving ? (
+                                <div className='Loader'>
+                                    <CircularProgress color="primary" />
+                                </div>
+                            ) :
+                                (
+                                    blogs.map((blog, i) => (
+                                        <Col xl={6} key={i} className='mb-3'>
+                                            <Card >
+                                                <Card.Img variant="top" src={blog.imageUrl} className='blog_image' />
+                                                <Card.Body>
+                                                    <Card.Title className='fw-bold'>{blog.title}</Card.Title>
+                                                    <Card.Text>
+                                                        {blog.description}
+                                                    </Card.Text>
+                                                    <Row xl={2}>
+                                                        <Col >
+                                                            <Button variant="primary me-3">Edit</Button>
+                                                        </Col>
+                                                        <Col>
+                                                            <Button variant="danger">Delete</Button>
+                                                        </Col>
+                                                    </Row>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+
+                                    ))
+                                )
+                            }
+                        </Row>
                     </div>
                 </div>
                 <div className="col-5">
                     <div className="bg-white p-4">
-                          <Form >
+                        <Form >
                             <h4 className="pb-4">Create article</h4>
                             <div className="form-group">
                                 <label htmlFor="">Title</label>

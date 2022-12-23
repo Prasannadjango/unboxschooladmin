@@ -190,3 +190,7 @@ table{
 .pt-37{
   padding-top: 37px;
 }
+.blog_image{
+  height: 200px;
+ object-position: center;
+}

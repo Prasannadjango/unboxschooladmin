@@ -115,13 +115,16 @@ function Managestudentspage() {
     }, [])
 
     const search = (data) => {
+    
         return data.filter(
             (item) =>
-                item.studentfirstname.toLowerCase().includes(query) ||
-                item.studentlastname.toLowerCase().includes(query) ||
-                item.studentsection.toLowerCase().includes(query) ||
-                item.studentClass.toLowerCase().includes(query)
+            item.studentfirstname.toLowerCase().includes(query) ||
+            item.studentlastname.toLowerCase().includes(query) ||
+            item.studentsection.toLowerCase().includes(query) ||
+            item.studentClass.toLowerCase().includes(query)
         );
+    
+     
     }
     return (
         <>
