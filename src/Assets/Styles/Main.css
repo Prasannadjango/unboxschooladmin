@@ -163,27 +163,27 @@ table{
   right: 15px;
   font-size: 25px;
 }
-.Dashboard_card5>div>h4{
-  color: rgb(22, 163, 121);
+.Dashboard_card5>div>h5{
+  color: rgb(22, 163, 121) ;
   font-weight: bold;
 }
-.Dashboard_card>div>h4{
+.Dashboard_card>div>h5{
   color: rgb(29, 173, 209);
   font-weight: bold;
 }
-.Dashboard_card1>div>h4{
+.Dashboard_card1>div>h5{
   color: rgb(46, 224, 70);
   font-weight: bold;
 }
-.Dashboard_card2>div>h4{
+.Dashboard_card2>div>h5{
   color: rgb(218, 57, 35);
   font-weight: bold;
 }
-.Dashboard_card4>div>h4{
+.Dashboard_card4>div>h5{
   color: rgb(170, 134, 35);
   font-weight: bold;
 }
-.Dashboard_card3>div>h4{
+.Dashboard_card3>div>h5{
   color: rgb(116, 35, 170);
   font-weight: bold;
 }

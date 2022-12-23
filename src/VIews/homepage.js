@@ -13,7 +13,7 @@ export default function Homepage() {
                   <Col>
                      <Card className="Dashboard_card p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Students</h4>
+                           <h5 className="pe-4">Total Students</h5>
                            <div className='icons_Container'>
                               <FaIcons.FaUserGraduate />
                            </div>
@@ -29,7 +29,7 @@ export default function Homepage() {
                   <Col>
                      <Card className="Dashboard_card1 p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Teachers</h4>
+                           <h5 className="pe-4">Total Teachers</h5>
                            <div className='icons_Container1'>
                               <FaIcons.FaChalkboardTeacher />
                            </div>
@@ -45,9 +45,9 @@ export default function Homepage() {
                   <Col>
                      <Card className="Dashboard_card2 p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Classes</h4>
+                           <h5 className="pe-4">Total Classes</h5>
                            <div className='icons_Container2'>
-                              <FaIcons.FaBook/>
+                              <FaIcons.FaBook />
                            </div>
 
                         </div>
@@ -61,9 +61,9 @@ export default function Homepage() {
                   <Col className='mt-5'>
                      <Card className="Dashboard_card3 p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Subjects</h4>
+                           <h5 className="pe-4">Total Subjects</h5>
                            <div className='icons_Container3'>
-                              <BaIcons.BsBookFill/>
+                              <BaIcons.BsBookFill />
                            </div>
 
                         </div>
@@ -77,9 +77,9 @@ export default function Homepage() {
                   <Col className='mt-5'>
                      <Card className="Dashboard_card4 p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Sections</h4>
+                           <h5 className="pe-4">Total Sections</h5>
                            <div className='icons_Container4'>
-                              <FaIcons.FaIdBadge/>
+                              <FaIcons.FaIdBadge />
                            </div>
 
                         </div>
@@ -94,9 +94,9 @@ export default function Homepage() {
                   <Col className='mt-5'>
                      <Card className="Dashboard_card5 p-4 border-0">
                         <div className="d-flex justify-content-between align-items-center">
-                           <h4 className="pe-4">Total Blogs</h4>
+                           <h5 className="pe-4">Total Blogs</h5>
                            <div className='icons_Container5'>
-                              <FaIcons.FaNewspaper/>
+                              <FaIcons.FaNewspaper />
                            </div>
 
                         </div>
@@ -106,16 +106,6 @@ export default function Homepage() {
 
                      </Card>
                   </Col>
-
-
-
-
-               
-                 
-
-
-
-
                </Row>
             </div>
          </div>
