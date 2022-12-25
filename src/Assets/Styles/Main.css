@@ -1,12 +1,10 @@
 @font-face {
-    font-family: 'myfont';
-    src: url(../Fonts/Ubuntu-Regular.otf),
-    url(../Fonts/Ubuntu-Regular.ttf),
-    url(../Fonts/Ubuntu-Regular.woff),
-    url(../Fonts/Ubuntu-Regular.woff2);
+  font-family: "myfont";
+  src: url(../Fonts/Ubuntu-Regular.otf), url(../Fonts/Ubuntu-Regular.ttf),
+    url(../Fonts/Ubuntu-Regular.woff), url(../Fonts/Ubuntu-Regular.woff2);
 }
-*{
-    font-family: 'myfont';
+* {
+  font-family: "myfont";
 }
 :root {
   --primary--color: #434578;
@@ -17,7 +15,7 @@
   top: 50%;
   border-radius: 15px;
   transform: translate(-50%, -50%);
- box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .Loginpage_container > .row > div:nth-child(1) > img {
@@ -28,39 +26,62 @@
   background-color: var(--primary--color) !important;
   font-weight: bold !important;
 }
-.bgclr{
+.bgclr {
   background-color: #ebebeb !important;
   height: 100%;
   padding: 17px;
   width: 100%;
 }
-.bgclr>div>div{
-border-radius: 15px;
+.bgclr > div > div {
+  border-radius: 15px;
 }
-.tablerowcolor{
+.tablerowcolor {
   background-color: var(--primary--color) !important;
   color: #fff;
 }
-.Loader{
-  
+.Loader {
   position: absolute;
   top: 100%;
   left: 50%;
   margin-top: 50px;
-} 
-table{
+}
+table {
   margin: 0 !important;
 }
-.bgclr>div{
+.bx-shadow-none {
+  box-shadow: none !important;
+}
+.class_badge {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: var(--primary--color);
+  border-radius: 50px;
+  color: white;
+  font-size: 30px;
+  
+}
+.classpage_heading{
+  color: var(--primary--color);
+}
+.content-container > div > div {
+  border-radius: inherit;
+}
+.content-container > div {
   height: fit-content;
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.Navbar_logo{
-  width: 100px;
-
+.bgclr > div {
+  height: fit-content;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.Navbar_main{
+.Navbar_logo {
+  width: 100px;
+}
+.Navbar_main {
   z-index: 5;
   width: 100%;
   justify-content: space-between;
@@ -68,24 +89,22 @@ table{
   align-content: center;
   background: white;
   box-shadow: 0 8px 6px -6px rgb(179, 179, 179);
-
 }
-.pt-as{
-   padding-top: 68px;
+.pt-as {
+  padding-top: 68px;
 }
 .Dashboard_card,
 .Dashboard_card2,
 .Dashboard_card1,
 .Dashboard_card3,
 .Dashboard_card4,
-.Dashboard_card5
-{
+.Dashboard_card5 {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 15px;
   height: max-content;
   padding: 10px;
 }
-.icons_Container{
+.icons_Container {
   width: 60px;
   height: 60px;
   display: grid;
@@ -98,7 +117,7 @@ table{
   top: -20%;
   right: 15px;
 }
-.icons_Container1{
+.icons_Container1 {
   width: 60px;
   height: 60px;
   display: grid;
@@ -111,7 +130,7 @@ table{
   top: -20%;
   right: 15px;
 }
-.icons_Container2{
+.icons_Container2 {
   width: 60px;
   height: 60px;
   display: grid;
@@ -124,7 +143,7 @@ table{
   right: 15px;
   font-size: 25px;
 }
-.icons_Container3{
+.icons_Container3 {
   width: 60px;
   height: 60px;
   display: grid;
@@ -137,7 +156,7 @@ table{
   right: 15px;
   font-size: 25px;
 }
-.icons_Container4{
+.icons_Container4 {
   width: 60px;
   height: 60px;
   display: grid;
@@ -150,7 +169,7 @@ table{
   right: 15px;
   font-size: 25px;
 }
-.icons_Container5{
+.icons_Container5 {
   width: 60px;
   height: 60px;
   display: grid;
@@ -163,66 +182,70 @@ table{
   right: 15px;
   font-size: 25px;
 }
-.Dashboard_card5>div>h5{
-  color: rgb(22, 163, 121) ;
+.Dashboard_card5 > div > h5 {
+  color: rgb(22, 163, 121);
   font-weight: bold;
 }
-.Dashboard_card>div>h5{
+.Dashboard_card > div > h5 {
   color: rgb(29, 173, 209);
   font-weight: bold;
 }
-.Dashboard_card1>div>h5{
+.Dashboard_card1 > div > h5 {
   color: rgb(46, 224, 70);
   font-weight: bold;
 }
-.Dashboard_card2>div>h5{
+.Dashboard_card2 > div > h5 {
   color: rgb(218, 57, 35);
   font-weight: bold;
 }
-.Dashboard_card4>div>h5{
+.Dashboard_card4 > div > h5 {
   color: rgb(170, 134, 35);
   font-weight: bold;
 }
-.Dashboard_card3>div>h5{
+.Dashboard_card3 > div > h5 {
   color: rgb(116, 35, 170);
   font-weight: bold;
 }
-.pt-37{
+.pt-37 {
   padding-top: 37px;
 }
-.blog_image{
+.blog_image {
   height: 200px;
- object-position: center;
+  object-position: center;
 }
 
-p{
+p {
   margin: 0 !important;
 }
 .pagination {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .pagination button {
-    width: 40px;
-    height: 40px;
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 16px;
-    margin: 0 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: transparent;
-    color: #eee;
-    border-color: #eee;
+  width: 40px;
+  height: 40px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #eee;
+  border-color: #eee;
 }
 
 .pagination button.active {
-    font-weight: 900;
-    border-color: #101010;
-    background: #ffe400;
-    color: #101010;
+  font-weight: 900;
+  border-color: #101010;
+  background: #ffe400;
+  color: #101010;
+}
+
+.totalclass_container {
+  border-radius: 15px;
 }

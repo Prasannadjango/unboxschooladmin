@@ -3,6 +3,8 @@ import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
+import * as HiIcons from "react-icons/hi";
+import * as BsIcons from "react-icons/bs";
 import CircularProgress from '@mui/material/CircularProgress';
 function Manageclasspage() {
     const [query, setQuery] = useState('');
@@ -48,72 +50,96 @@ function Manageclasspage() {
         return data.filter(
             (item) =>
                 item.class.toLowerCase().includes(query)
-               
+
         );
     }
     return (
         <>
-            <div className="bgclr d-flex">
-                <div className="col-8 ">
-                    <div className="bg-white">
-                        <div className='p-4 d-flex justify-content-between'>
-                            <h3>Class list</h3>
-                            <div className="col-5">
 
-                                <Form.Control type="text" placeholder="Search..."
-                                    onChange={e => setQuery(e.target.value)} className='py-2  ' />
+            <div className="bgclr ">
 
+                <div className="d-flex justify-content-center mb-5 bx-shadow-none">
+                    <div className="totalclass_container col-3 bg-white px-3 py-3 me-4">
+                        <div className="d-flex align-items-center">
+                            <div className='class_badge'><HiIcons.HiUserGroup /></div>
+                            <div className="ps-3">
+                                <h5 className="classpage_heading fw-bold">Total class</h5>
+                                <h1 className="fw-bold">10</h1>
                             </div>
                         </div>
-                        <Table striped bordered hover >
-                            <thead className="tablerowcolor">
-                                <tr>
-                                    <th className="col-1">#id</th>
-                                    <th className="col-2">Class</th>
-
-                                    <th className="col-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="position-relative">
-                                {retrieving ? (
-                                    <div className='Loader'>
-                                        <CircularProgress color="primary" />
-                                    </div>
-                                ) :
-                                    search(Studentclass)?.map((studentclass, i) => (
-
-                                        <tr key={i}>
-                                            <td>{i}</td>
-                                            <td>{studentclass.class}</td>
-
-                                            <td>
-                                                <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-                                                <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-                                            </td>
-                                        </tr>
-
-
-                                    ))
-                                }
-     
-
-                            </tbody>
-                        </Table>
+                    </div>
+                    <div className="totalclass_container col-3 bg-white px-3 py-3">
+                        <div className="d-flex align-items-center">
+                            <div className='class_badge'><BsIcons.BsFillEaselFill/></div>
+                            <div className="ps-3">
+                                <h5 className="classpage_heading fw-bold">Total sections</h5>
+                                <h1 className="fw-bold">5</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="col-4 mx-2">
-                    <div className="bg-white p-4">
-                        <h4 className="py-2">Add New class</h4>
-                        <Form >
-                            <label>class name</label>
-                            <Form.Control type="text" placeholder="Class Name ('ex:6,7')" className='py-2 my-2'
-                                onChange={(e) => setClass(e.target.value)}
-                            />
+                <div className="d-flex content-container">
+                    <div className="col-8 ">
+                        <div className="bg-white">
+                            <div className='p-4 d-flex justify-content-between'>
+                                <h3>Class list</h3>
+                                <div className="col-5">
 
-                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={Addclass}>
-                                Add New class
-                            </Button>
-                        </Form>
+                                    <Form.Control type="text" placeholder="Search..."
+                                        onChange={e => setQuery(e.target.value)} className='py-2  ' />
+
+                                </div>
+                            </div>
+                            <Table striped bordered hover >
+                                <thead className="tablerowcolor">
+                                    <tr>
+                                       
+                                        <th className="col-2">Class</th>
+
+                                        <th className="col-2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="position-relative">
+                                    {retrieving ? (
+                                        <div className='Loader'>
+                                            <CircularProgress color="primary" />
+                                        </div>
+                                    ) :
+                                        search(Studentclass)?.map((studentclass, i) => (
+
+                                            <tr key={i}>
+                                                
+                                                <td>{studentclass.class}</td>
+
+                                                <td>
+                                                    <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
+                                                    <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
+                                                </td>
+                                            </tr>
+
+
+                                        ))
+                                    }
+
+
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
+                    <div className="col-4 mx-2">
+                        <div className="bg-white p-4">
+                            <h4 className="py-2">Add New class</h4>
+                            <Form >
+                                <label>class name</label>
+                                <Form.Control type="text" placeholder="Class Name ('ex:6,7')" className='py-2 my-2'
+                                    onChange={(e) => setClass(e.target.value)}
+                                />
+
+                                <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={Addclass}>
+                                    Add New class
+                                </Button>
+                            </Form>
+                        </div>
                     </div>
                 </div>
             </div>
