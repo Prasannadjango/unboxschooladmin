@@ -283,29 +283,29 @@ function Managestudentspage() {
                             </tbody>
 
                             <tfoot>
-                               
-                                    <TablePagination
-                                        rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                                        colSpan={3}
-                                        count={Students.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        slotProps={{
-                                            select: {
-                                                'aria-label': 'rows per page',
-                                            },
-                                            actions: {
-                                                showFirstButton: true,
-                                                showLastButton: true,
-                                            },
-                                        }}
-                                        onPageChange={handleChangePage}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                        className='bg-clr2'
-                                    />
 
-                                   
-                              
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                    colSpan={3}
+                                    count={Students.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    slotProps={{
+                                        select: {
+                                            'aria-label': 'rows per page',
+                                        },
+                                        actions: {
+                                            showFirstButton: true,
+                                            showLastButton: true,
+                                        },
+                                    }}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                    className='bg-clr2'
+                                />
+
+
+
                             </tfoot>
 
                         </Table>

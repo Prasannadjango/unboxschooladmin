@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage, db } from "../firebase-config";
+
 import * as FaIcons from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
 function Managesectionpage() {
@@ -10,7 +13,8 @@ function Managesectionpage() {
     const [query, setQuery] = useState('');
     const [retrieving, setRetrieving] = useState(false);
     const [show, setShow] = useState(false);
-
+    const [Studentclassinfo, setStudentclassinfo] = useState([]);
+    const [studentClass, setStudentclass] = useState("");
     const Addsection = async (e) => {
         e.preventDefault();
 
@@ -42,16 +46,110 @@ function Managesectionpage() {
     useEffect(() => {
         fetchstudentsection();
     }, [])
+    const fetchstudentclass = async () => {
 
+        await getDocs(collection(db, "Newclass"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setStudentclassinfo(newData);
+
+            })
+
+    }
+
+    useEffect(() => {
+        fetchstudentclass();
+    }, [])
     const search = (data) => {
         return data.filter(
             (item) =>
-                item.section.toLowerCase().includes(query) 
-            );
+                item.section.toLowerCase().includes(query)
+        );
     }
+    const [formData, setFormData] = useState({
+        image: "",
+    });
+    const handleImageChange = (e) => {
+        setFormData({ ...formData, image: e.target.files[0] });
+    };
+    const handlePublish = (e) => {
+        e.preventDefault();
+        if (!Section || !formData.image) {
+            alert("Please fill all the fields");
+            return;
+        }
+
+        const storageRef = ref(
+            storage,
+            `/Iconsimages/${formData.image.name}`
+        );
+
+        const uploadImage = uploadBytesResumable(storageRef, formData.image);
+
+        uploadImage.on(
+            "state_changed",
+            (snapshot) => {
+
+
+            },
+            (err) => {
+                console.log(err);
+            },
+            () => {
+                setFormData({
+                    image: "",
+                });
+
+                getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+                    const articleRef = collection(db, "Newsection");
+                    addDoc(articleRef, {
+                        class: studentClass,
+                        section: Section,
+                        imageUrl: url,
+
+
+                    })
+                        .then(() => {
+                            alert('blog created successfully')
+                        })
+                        .catch((err) => {
+                            alert('error is blog');
+                        });
+                });
+            }
+        );
+    };
+
+
+
+    const [color, setColor] = useState('#000');
+
+  const getRgb = () => Math.floor(Math.random() * 256);
+
+  const rgbToHex = (r, g, b) =>
+  '#' +
+  [r, g, b]
+    .map(x => {
+      const hex = x.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    })
+    .join('');
+
+    const handleGenerate = () => {
+        const color = {
+          r: getRgb(),
+          g: getRgb(),
+          b: getRgb(),
+        };
+    
+        setColor(rgbToHex(color.r, color.g, color.b));
+      };
+
+      const [colorchange,setcolorchange] = useState(handleGenerate);
     return (
         <>
-            <div className="bgclr d-flex">
+            <div className=" d-flex">
                 <div className="col-8 ">
                     <div className="bg-white">
                         <div className='p-4 d-flex justify-content-between'>
@@ -61,53 +159,78 @@ function Managesectionpage() {
                                     onChange={e => setQuery(e.target.value)} className='py-2  ' />
                             </div>
                         </div>
-                        <Table striped bordered hover >
-                            <thead className="tablerowcolor">
-                                <tr>
-                                    <th className="col-1">#id</th>
-                                    <th className="col-2">Section</th>
+                        
 
-                                    <th className="col-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="position-relative">
-                                {retrieving ? (
-                                    <div className='Loader'>
-                                        <CircularProgress color="primary" />
-                                    </div>
-                                ) :
-                                    (
-                                        search(Studentsection)?.map((studentsection, i) => (
+                        <Row xl={3} className="p-4">
+                        {retrieving ? (
+                            <div className='Loader'>
+                                <CircularProgress color="primary" />
+                            </div>
+                        ) :
+                               
+                                    
+                            (    
+                                search(Studentsection)?.map((studentsection, i) => (   
+                                  <Col className='classlist_container p-3 me-4'>
+                                        <div className="d-flex align-items-center">
+                                            <div className='class_badge1' style={{ backgroundColor: color }}>
+                                               <img src={studentsection.imageUrl}/>
+                                            </div>
+                                            <div className="ps-3">
+        
+                                                <h4 className="fw-bold">{studentsection.section}</h4>
+                                            </div>
+                                        </div>
+                                    </Col> 
+                                ))
+                               
+                            )
+                        }
+                         </Row>
 
-                                            <tr key={i}>
-                                                <td>{i}</td>
-                                                <td>{studentsection.section}</td>
-
-                                                <td>
-                                                    <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-                                                    <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-                                                </td>
-                                            </tr>
 
 
-                                        ))
-                                    )
-                                }
+                   
+                       
 
-                            </tbody>
-                        </Table>
                     </div>
                 </div>
                 <div className="col-4 mx-2">
                     <div className="bg-white p-4">
                         <h4 className="py-2">Add New section</h4>
                         <Form >
-                            <label>Section name</label>
-                            <Form.Control type="text" placeholder="Section Name ('ex:a,b')" className='py-2 my-2'
-                                onChange={(e) => setSection(e.target.value)}
+                            <label>Class</label>
+                            <Form.Select aria-label="Default select example"
+                                onChange={(e) => setStudentclass(e.target.value)} >
+                                {
+                                    Studentclassinfo?.map((studentclass, i) => (
+
+                                        <option>{studentclass.class}</option>
+
+                                    ))
+                                }
+
+                            </Form.Select>
+                            <div className="form-group">
+                                <label htmlFor="">Section</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="form-control"
+                                    onChange={(e) => setSection(e.target.value)}
+                                />
+                            </div>
+
+                            <label htmlFor="">Image</label>
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                className="form-control"
+                                onChange={(e) => handleImageChange(e)}
                             />
 
-                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={Addsection}>
+                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={handlePublish}>
                                 Add New class
                             </Button>
                         </Form>
