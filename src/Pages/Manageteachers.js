@@ -1,27 +1,29 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Sidemenu from "../components/Sidebar";
 import Manageteacherspage from "../VIews/Manageteacherspage";
 
 
 function Manageteachers() {
     const Getautheticate = localStorage.getItem('login');
-    
-    if(Getautheticate === 'true'){
+
+    if (Getautheticate === 'true') {
         return (
             <>
-               <Navbar/>
-                <div className='d-flex pt-as'>
-                    <Sidemenu />
-                    <Manageteacherspage />
+                <div className="app">
+                    <Navbar />
+                    <div className='d-flex pt-as'>
+                        <Sidemenu />
+                        <Manageteacherspage />
+                    </div>
                 </div>
-    
+
             </>
         );
     }
-    else{
-        return<Navigate to="/" replace />
+    else {
+        return <Navigate to="/" replace />
     }
 
 }

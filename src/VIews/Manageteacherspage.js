@@ -90,21 +90,21 @@ function Manageteacherspage() {
 
     return (
         <>
-            <div className="bgclr d-flex">
-                <div className='col-7 me-2'>
-                    <div className="bg-white">
+            <div className="content-wrapper d-flex">
+                <div className='col-8 me-2'>
+                    <div className="app-card">
                         <div className='p-4 d-flex justify-content-between'>
                             <h3>Teachers list</h3>
-                            <div className="col-5">
+                            <div className="col-7">
 
                                 <Form.Control type="text" placeholder="Search..."
-                                    onChange={e => setQuery(e.target.value)} className='py-2  ' />
+                                    onChange={e => setQuery(e.target.value)} className='search-bar   ' />
 
                             </div>
                         </div>
-                        <Table striped bordered hover >
-                            <thead className="tablerowcolor">
-                                <tr>
+                        <Table className='content-bg'>
+                            <thead >
+                                <tr >
                                     <th>#id</th>
                                     <th>Name</th>
 
@@ -146,8 +146,8 @@ function Manageteacherspage() {
                         </Table>
                     </div>
                 </div>
-                <div className="col-5">
-                    <div className="bg-white p-4">
+                <div className="col-4">
+                    <div className="app-card overflow-container  p-4">
                         <Form >
                             <h3 className=" py-1"> Add new Teacher</h3>
                             <label>First name</label>

@@ -20,9 +20,9 @@ function App() {
      <React.StrictMode>
         <ProSidebarProvider>
           <BrowserRouter>
-            <Routes>
+            <Routes >
               <Route path="/" element={<Loginpage/>} />
-              <Route path='/home' element={<Dashboard/>}/>
+              <Route path='/home' element={<Dashboard  />}/>
               <Route path='/Manageteachers' element={<Manageteachers/>}/>
               <Route path='/Managestudents' element={<Managestudents/>}/>
               <Route path='/Manageclass' element={<Manageclass/>}/>

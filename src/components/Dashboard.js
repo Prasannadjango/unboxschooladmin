@@ -8,12 +8,14 @@ function Dashboard() {
     return (
 
         <>
-             <Navbar/>
-             <div className="d-flex pt-as">
-              
-             <Sidemenu />
-             <Homepage/>
-             </div>
+            <div className='app'>
+                <Navbar />
+                <div className="d-flex pt-as">
+
+                    <Sidemenu />
+                    <Homepage />
+                </div>
+            </div>
         </>
     );
 }

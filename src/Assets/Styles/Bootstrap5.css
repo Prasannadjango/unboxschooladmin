@@ -2157,10 +2157,11 @@ progress {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: #fff3cd;
+  background-color: var(--search-bg) !important;
+  border-radius: 4px !important;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2179,7 +2180,7 @@ progress {
   cursor: pointer;
 }
 .form-control:focus {
-  color: #212529;
+  color:   #fff3cd;
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
@@ -4253,7 +4254,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  /* background-color: #fff; */
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;

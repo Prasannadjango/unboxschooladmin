@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, Row, Col } from 'react-bootstrap';
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { Table, Button, Form, Row, Col, Modal } from 'react-bootstrap';
+import { collection, addDoc, doc, getDocs, deleteDoc } from "firebase/firestore";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db } from "../firebase-config";
@@ -12,13 +12,15 @@ import * as BsIcons from "react-icons/bs";
 import CircularProgress from '@mui/material/CircularProgress';
 import Managesectionpage from "./Managesectionpage";
 function Manageclasspage() {
-   
+
 
     const [query, setQuery] = useState('');
     const [retrieving, setRetrieving] = useState(false);
     const [show, setShow] = useState(false);
     const [Studentclassinfo, setStudentclassinfo] = useState([]);
     const [studentClass, setStudentclass] = useState("");
+    const [classcount, setclasscount] = useState("");
+
 
     const fetchstudentclass = async () => {
 
@@ -28,6 +30,7 @@ function Manageclasspage() {
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setStudentclassinfo(newData);
 
+                setclasscount(newData.length);
             })
 
     }
@@ -101,34 +104,53 @@ function Manageclasspage() {
 
 
 
-    const [color, setColor] = useState('#000');
+    const [color, setColor] = useState('');
 
-    const getRgb = () => Math.floor(Math.random() * 256);
 
-    const rgbToHex = (r, g, b) =>
-        '#' +
-        [r, g, b]
-            .map(x => {
-                const hex = x.toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            })
-            .join('');
 
-    const handleGenerate = () => {
-        const color = {
-            r: getRgb(),
-            g: getRgb(),
-            b: getRgb(),
-        };
+    const colorgenerator = () => {
+        const myShows = ['#DEF5E5', '#EFF5F5', '#FAF7F0', '#F4F9F9', '#E8FFFF', '#FEFCF3', '#F1F3F8', '#FAF5EF'];
 
-        setColor(rgbToHex(color.r, color.g, color.b));
+        const b = myShows[Math.floor(Math.random() * myShows.length)];
+
+        setColor(b);
+
+
+    }
+    useEffect(() => {
+        colorgenerator();
+
+    }, [])
+
+    const [Deleteval, setDeleteval] = useState();
+
+    //   const Deletesection = () => {
+    //     db.collection("Newsection").document(Deleteval)  
+    //     .delete()  
+
+    //   }
+    const deleteUser = async () => {
+      const docRef = doc(db, "Newclass", Deleteval);
+
+        deleteDoc(docRef)
+        .then(() => {
+            console.log("Entire Document has been deleted successfully.")
+        })
+        .catch(error => {
+            console.log(error);
+        })
     };
 
-    const [colorchange, setcolorchange] = useState(handleGenerate);
+    const [show1, setShow1] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     return (
         <>
 
-            <div className="bgclr ">
+            <div className="bgclr1">
 
                 <div className="d-flex justify-content-center mb-5 bx-shadow-none">
                     <div className="totalclass_container col-3 bg-white px-3 py-3 me-4">
@@ -136,7 +158,7 @@ function Manageclasspage() {
                             <div className='class_badge'><HiIcons.HiUserGroup /></div>
                             <div className="ps-3">
                                 <h5 className="classpage_heading fw-bold">Total class</h5>
-                                <h1 className="fw-bold">10</h1>
+                                <h1 className="fw-bold">{classcount}</h1>
                             </div>
                         </div>
                     </div>
@@ -151,8 +173,8 @@ function Manageclasspage() {
                     </div>
                 </div>
                 <div className="d-flex content-container ">
-                    <div className="col-8 ">
-                        <div className="bg-white">
+                    <div className="col-8 bd-rd15">
+                        <div className="bg-white bd-rd15">
                             <div className='p-4 d-flex justify-content-between'>
                                 <h3>Class list</h3>
                                 <div className="col-5">
@@ -163,7 +185,7 @@ function Manageclasspage() {
                                 </div>
                             </div>
 
-                            <Row xl={3} className="p-4">
+                            <Row xl={4} className="p-4 justify-content-center">
                                 {retrieving ? (
                                     <div className='Loader'>
                                         <CircularProgress color="primary" />
@@ -173,14 +195,19 @@ function Manageclasspage() {
 
                                     (
                                         Studentclassinfo?.map((studentsection, i) => (
-                                            <Col className='classlist_container p-3 me-4'>
+                                            <Col className='classlist_container p-2 me-3 mb-4 position-relative' >
+                                                <div className="Delete_btn" onClick={handleShow}>
+                                                    <Button key={i} className='border-0' onClick={() => setDeleteval(studentsection.id)} >
+                                                        <BsIcons.BsXLg />
+                                                    </Button>
+                                                </div>
                                                 <div className="d-flex align-items-center">
                                                     <div className='class_badge1' style={{ backgroundColor: color }}>
                                                         <img src={studentsection.imageUrl} />
                                                     </div>
                                                     <div className="ps-3">
 
-                                                        <h4 className="fw-bold">{studentsection.class}</h4>
+                                                        <h6 className="fw-bold">Class  {studentsection.class}</h6>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -190,12 +217,25 @@ function Manageclasspage() {
                                 }
                             </Row>
 
-
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete class</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Do you want to Delete class {Deleteval}</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        Close
+                                    </Button>
+                                    <Button variant="primary" onClick={deleteUser}>
+                                        Save Changes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
 
                         </div>
                     </div>
-                    <div className="col-4 mx-2">
-                        <div className="bg-white p-4">
+                    <div className="col-4 mx-2 bd-rd15">
+                        <div className="bg-white p-4 ">
                             <h4 className="py-2">Add New class</h4>
                             <Form >
 

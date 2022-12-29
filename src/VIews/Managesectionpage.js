@@ -125,78 +125,81 @@ function Managesectionpage() {
 
     const [color, setColor] = useState('#000');
 
-  const getRgb = () => Math.floor(Math.random() * 256);
+    const getRgb = () => Math.floor(Math.random() * 256);
 
-  const rgbToHex = (r, g, b) =>
-  '#' +
-  [r, g, b]
-    .map(x => {
-      const hex = x.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    })
-    .join('');
+    const rgbToHex = (r, g, b) =>
+        '#' +
+        [r, g, b]
+            .map(x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            })
+            .join('');
 
     const handleGenerate = () => {
         const color = {
-          r: getRgb(),
-          g: getRgb(),
-          b: getRgb(),
+            r: getRgb(),
+            g: getRgb(),
+            b: getRgb(),
         };
-    
-        setColor(rgbToHex(color.r, color.g, color.b));
-      };
 
-      const [colorchange,setcolorchange] = useState(handleGenerate);
+        setColor(rgbToHex(color.r, color.g, color.b));
+    };
+
+    const [colorchange, setcolorchange] = useState(handleGenerate);
     return (
         <>
             <div className=" d-flex">
                 <div className="col-8 ">
-                    <div className="bg-white">
+                    <div className="bg-white bd-rd15">
                         <div className='p-4 d-flex justify-content-between'>
                             <h3>Section-list</h3>
-                            <div className="col-5">
+                            <div className="col-4">
                                 <Form.Control type="text" placeholder="Search..."
                                     onChange={e => setQuery(e.target.value)} className='py-2  ' />
                             </div>
                         </div>
-                        
 
-                        <Row xl={3} className="p-4">
-                        {retrieving ? (
-                            <div className='Loader'>
-                                <CircularProgress color="primary" />
-                            </div>
-                        ) :
-                               
-                                    
-                            (    
-                                search(Studentsection)?.map((studentsection, i) => (   
-                                  <Col className='classlist_container p-3 me-4'>
-                                        <div className="d-flex align-items-center">
-                                            <div className='class_badge1' style={{ backgroundColor: color }}>
-                                               <img src={studentsection.imageUrl}/>
+
+                        <Row xl={4} className="p-4 justify-content-center">
+                            {
+                                    search(Studentsection)?.map((studentsection, i) => (
+                                        <Col className='classlist_container p-2 me-4 mb-3' key={i}>
+                                            <div className="d-flex align-items-center justify-content-between">
+                                                <div className="d-flex align-content-center">
+                                                    <div className='class_badge1' style={{ backgroundColor: color }}>
+                                                        <img src={studentsection.imageUrl} />
+                                                    </div>
+                                                    <div className="ps-3">
+
+                                                        <h6 className="fw-bold m-0">Section  {studentsection.section}</h6>
+                                                        <div className="d-flex">
+                                                            <p className="m-0 text-secondary">class:</p>
+                                                            <p className="m-0 text-secondary">{studentsection.class}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <FaIcons.FaAngleRight/>
+                                                </div>
                                             </div>
-                                            <div className="ps-3">
-        
-                                                <h4 className="fw-bold">{studentsection.section}</h4>
-                                            </div>
-                                        </div>
-                                    </Col> 
-                                ))
-                               
-                            )
-                        }
-                         </Row>
+                                        </Col>
+                                    ))
+
+                                
+                            }
+                        </Row>
 
 
 
-                   
-                       
+
+
 
                     </div>
                 </div>
                 <div className="col-4 mx-2">
-                    <div className="bg-white p-4">
+                    <div className="bg-white p-4 bd-rd15">
                         <h4 className="py-2">Add New section</h4>
                         <Form >
                             <label>Class</label>
