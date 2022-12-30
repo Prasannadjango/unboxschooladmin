@@ -107,9 +107,9 @@ export default function AddArticle() {
 
         <>
 
-            <div className="bgclr d-flex">
-                <div className="col-7 me-2">
-                    <div className="bg-white p-3  ">
+            <div className="content-wrapper d-flex">
+                <div className="col-8 me-2">
+                    <div className="app-card overflow-container p-3  ">
 
                         <Row className='position-relative'>
                             {retrieving ? (
@@ -120,7 +120,7 @@ export default function AddArticle() {
                                 (
                                     blogs.map((blog, i) => (
                                         <Col xl={6} key={i} className='mb-3'>
-                                            <Card >
+                                            <Card className='rounded'>
                                                 <Card.Img variant="top" src={blog.imageUrl} className='blog_image' />
                                                 <Card.Body>
                                                     <Card.Title className='fw-bold'>{blog.title}</Card.Title>
@@ -145,8 +145,8 @@ export default function AddArticle() {
                         </Row>
                     </div>
                 </div>
-                <div className="col-5">
-                    <div className="bg-white p-4">
+                <div className="col-4">
+                    <div className="app-card p-4">
                         <Form >
                             <h4 className="pb-4">Create article</h4>
                             <div className="form-group">
