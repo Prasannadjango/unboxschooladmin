@@ -10,11 +10,14 @@ function Managestudents() {
     if (Getautheticate === 'true') {
         return (
             <>
-                <Navbar />
-                <div className="d-flex pt-as">
-                    <Sidemenu />
-                    <Managestudentspage />
+                <div className="app">
+                    <Navbar />
+                    <div className="d-flex pt-as">
+                        <Sidemenu />
+                        <Managestudentspage />
+                    </div>
                 </div>
+
             </>
         );
     }

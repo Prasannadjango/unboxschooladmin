@@ -9,11 +9,13 @@ function Manageclass() {
     if (Getautheticate === 'true') {
         return (
             <>
-                <Navbar />
+               <div className="app">
+               <Navbar />
                 <div className="d-flex pt-as">
                     <Sidemenu />
                     <Manageclasspage />
                 </div>
+               </div>
             </>
         );
     }

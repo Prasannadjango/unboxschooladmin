@@ -6,6 +6,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TablePaginationUnstyled, {
     tablePaginationUnstyledClasses as classes,
 } from '@mui/base/TablePaginationUnstyled';
+import * as FaIcons from "react-icons/fa";
+
 import { styled } from '@mui/system';
 function Managestudentspage() {
     const [Students, setStudents] = useState([]);
@@ -131,7 +133,7 @@ function Managestudentspage() {
 
 
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
     const blue = {
         200: '#A5D8FF',
         400: '#3399FF',
@@ -233,9 +235,9 @@ function Managestudentspage() {
 
     return (
         <>
-            <div className="bgclr d-flex">
-                <div className="col-7 me-2">
-                    <div className="bg-white">
+            <div className="content-wrapper d-flex">
+                <div className="col-8 me-2">
+                    <div className="app-card">
                         <div className='p-3 d-flex justify-content-between'>
                             <h3>Student list</h3>
                             <div className="col-5">
@@ -245,9 +247,10 @@ function Managestudentspage() {
 
                         </div>
 
-                        <Table striped bordered hover >
+                        <div>
+                            <Table className='content-bg ' >
 
-                            <thead className="tablerowcolor">
+                            <thead>
                                 <tr>
 
                                     <th>first-Name</th>
@@ -257,12 +260,12 @@ function Managestudentspage() {
                                     <th >Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="position-relative">
+                            <tbody className=" position-relative tbscrollable">
 
 
 
                                 {(rowsPerPage > 0
-                                    ? Students.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    ? search(Students).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     : Students
                                 ).map((row, i) => (
                                     <tr key={i}>
@@ -270,7 +273,10 @@ function Managestudentspage() {
                                         <td>{row.studentlastname}</td>
                                         <td>{row.studentClass}</td>
                                         <td>{row.studentsection}</td>
-
+                                        <td>
+                                                    <Button className='bg-primary text-white me-3  text-center '><FaIcons.FaEdit className="fs-6"/></Button> 
+                                                    <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
+                                                </td>
                                     </tr>
                                 ))}
 
@@ -299,9 +305,9 @@ function Managestudentspage() {
                                             showLastButton: true,
                                         },
                                     }}
-                                    onPageChange={handleChangePage}
+                                    onPageChange={handleChangePage} 
                                     onRowsPerPageChange={handleChangeRowsPerPage}
-                                    className='bg-clr2'
+                                    className='bg-clr2 text-light'
                                 />
 
 
@@ -309,11 +315,12 @@ function Managestudentspage() {
                             </tfoot>
 
                         </Table>
+                        </div>
                     </div>
 
                 </div>
-                <div className="col-5">
-                    <div className="bg-white p-4">
+                <div className="col-4">
+                    <div className="app-card overflow-container  p-4">
                         <h4 className="py-2">Add students</h4>
                         <Form >
                             <label>First name</label>

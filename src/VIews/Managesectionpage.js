@@ -149,45 +149,45 @@ function Managesectionpage() {
     const [colorchange, setcolorchange] = useState(handleGenerate);
     return (
         <>
-            <div className=" d-flex">
+            <div className=" d-flex my-5">
                 <div className="col-8 ">
-                    <div className="bg-white bd-rd15">
+                    <div className="classcount-card bd-rd15">
                         <div className='p-4 d-flex justify-content-between'>
                             <h3>Section-list</h3>
-                            <div className="col-4">
+                            <div className="col-6">
                                 <Form.Control type="text" placeholder="Search..."
                                     onChange={e => setQuery(e.target.value)} className='py-2  ' />
                             </div>
                         </div>
 
 
-                        <Row xl={4} className="p-4 justify-content-center">
+                        <Row xl={3} className="p-4 justify-content-center">
                             {
-                                    search(Studentsection)?.map((studentsection, i) => (
-                                        <Col className='classlist_container p-2 me-4 mb-3' key={i}>
-                                            <div className="d-flex align-items-center justify-content-between">
-                                                <div className="d-flex align-content-center">
-                                                    <div className='class_badge1' style={{ backgroundColor: color }}>
-                                                        <img src={studentsection.imageUrl} />
-                                                    </div>
-                                                    <div className="ps-3">
-
-                                                        <h6 className="fw-bold m-0">Section  {studentsection.section}</h6>
-                                                        <div className="d-flex">
-                                                            <p className="m-0 text-secondary">class:</p>
-                                                            <p className="m-0 text-secondary">{studentsection.class}</p>
-                                                        </div>
-                                                    </div>
+                                search(Studentsection)?.map((studentsection, i) => (
+                                    <Col className='classlist_container classcount-card p-2 me-4 mb-3' key={i}>
+                                        <div className="d-flex align-items-center justify-content-between">
+                                            <div className="d-flex align-items-center">
+                                                <div className='class_badge1' style={{ backgroundColor: color }}>
+                                                    <img src={studentsection.imageUrl} />
                                                 </div>
+                                                <div className="ps-3">
 
-                                                <div>
-                                                    <FaIcons.FaAngleRight/>
+                                                    <h6 className="fw-bold m-0">Section  {studentsection.section}</h6>
+                                                    <div className="d-flex py-1">
+                                                        <p className="m-0 text-light">Class: </p>
+                                                        <p className="m-0 text-light">{studentsection.class}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </Col>
-                                    ))
 
-                                
+                                            <div>
+                                                <FaIcons.FaAngleRight />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                ))
+
+
                             }
                         </Row>
 
@@ -199,7 +199,7 @@ function Managesectionpage() {
                     </div>
                 </div>
                 <div className="col-4 mx-2">
-                    <div className="bg-white p-4 bd-rd15">
+                    <div className="classcount-card p-4 bd-rd15">
                         <h4 className="py-2">Add New section</h4>
                         <Form >
                             <label>Class</label>
@@ -214,7 +214,7 @@ function Managesectionpage() {
                                 }
 
                             </Form.Select>
-                            <div className="form-group">
+                            <div className="form-group my-2">
                                 <label htmlFor="">Section</label>
                                 <input
                                     type="text"
@@ -229,11 +229,11 @@ function Managesectionpage() {
                                 type="file"
                                 name="image"
                                 accept="image/*"
-                                className="form-control"
+                                className="form-control "
                                 onChange={(e) => handleImageChange(e)}
                             />
 
-                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={handlePublish}>
+                            <Button variant="primary" type='submit' className='w-100 py-2 mt-3' onClick={handlePublish}>
                                 Add New class
                             </Button>
                         </Form>

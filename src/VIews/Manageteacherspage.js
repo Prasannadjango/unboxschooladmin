@@ -33,8 +33,8 @@ function Manageteacherspage() {
             (item) =>
                 item.teacherfirstname.toLowerCase().includes(query) ||
                 item.teacherphonenumber.toLowerCase().includes(query) ||
-                item.teachercity.toLowerCase().includes(query) 
-            );
+                item.teachercity.toLowerCase().includes(query)
+        );
     }
     // Add new teacher
 
@@ -73,19 +73,19 @@ function Manageteacherspage() {
                 setTeachers(newData);
                 console.log(Teachers, newData);
             })
-            setTimeout(() => {
-                setRetrieving(false)
-                setShow(!show);
-                }, 1200)
-            
+        setTimeout(() => {
+            setRetrieving(false)
+            setShow(!show);
+        }, 1200)
+
     }
 
     useEffect(() => {
-        
+
         fetchschooldata();
-        
-    }, 
-  [])
+
+    },
+        [])
 
 
     return (
@@ -105,7 +105,7 @@ function Manageteacherspage() {
                         <Table className='content-bg'>
                             <thead >
                                 <tr >
-                                    <th>#id</th>
+                                   
                                     <th>Name</th>
 
                                     <th>Phone number</th>
@@ -115,31 +115,31 @@ function Manageteacherspage() {
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="position-relative">
-                                {retrieving ?(
-                                  <div className='Loader'>
-                                      <CircularProgress color="primary" />
-                                  </div>
-                                ):
-                                   (
-                                    search(Teachers)?.map((teacher, i) => (
+                            <tbody className="position-relative tbscrollable">
+                                {retrieving ? (
+                                    <div className='Loader'>
+                                        <CircularProgress color="primary" />
+                                    </div>
+                                ) :
+                                    (
+                                        search(Teachers)?.map((teacher, i) => (
 
-                                        <tr key={i}>
-                                            <td>{i}</td>
-                                            <td>{teacher.teacherfirstname}</td>
-                                            <td>{teacher.teacherphonenumber}</td>
-                                            <td>{teacher.teachercity}</td>
-                                            <td>{teacher.teachercity}</td>
+                                            <tr key={i}>
+                                              
+                                                <td>{teacher.teacherfirstname}</td>
+                                                <td>{teacher.teacherphonenumber}</td>
+                                                <td>{teacher.teachercity}</td>
+                                                <td>{teacher.teachercity}</td>
 
-                                            <td>
-                                                <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
-                                                <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <Button className='bg-primary text-white me-3  text-center '><FaIcons.FaEdit className="fs-6"/></Button> 
+                                                    <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
+                                                </td>
+                                            </tr>
 
 
-                                    ))
-                                   )
+                                        ))
+                                    )
                                 }
 
                             </tbody>
@@ -153,37 +153,37 @@ function Manageteacherspage() {
                             <label>First name</label>
                             <Form.Control type="text" placeholder="First name" className='py-2 my-2'
                                 onChange={(e) => setTeacherfirstName(e.target.value)} />
-                                <label>Last name</label>
+                            <label>Last name</label>
                             <Form.Control type="text" placeholder="Last name" className='py-2 mb-2'
                                 onChange={(e) => setTeacherlastName(e.target.value)} />
-                                 <label>Phone number</label>
+                            <label>Phone number</label>
                             <Form.Control type="text" placeholder="phone number" className='py-2 mb-2'
                                 onChange={(e) => setTeacherphonenumber(e.target.value)} />
-                                <label>Email Address</label>
+                            <label>Email Address</label>
                             <Form.Control type="text" placeholder="Email" className='py-2 mb-2'
                                 onChange={(e) => setTeacherMail(e.target.value)} />
-                                 <label>Date Of Birth</label>
+                            <label>Date Of Birth</label>
                             <Form.Control type="date" placeholder="DOB" className='py-2 mb-2'
                                 onChange={(e) => setTeacherDob(e.target.value)} />
-                                 <label>Qualification</label>
+                            <label>Qualification</label>
                             <Form.Control type="text" placeholder="Qualification" className='py-2 mb-2'
                                 onChange={(e) => setTeacherQualification(e.target.value)} />
-                                 <label>Experience</label>
+                            <label>Experience</label>
                             <Form.Control type="text" placeholder="Experience" className='py-2 mb-2'
                                 onChange={(e) => setTeacherExperience(e.target.value)} />
-                                 <label>Date of Joining</label>
+                            <label>Date of Joining</label>
                             <Form.Control type="date" placeholder="Date of Joining" className='py-2 mb-2'
                                 onChange={(e) => setTeacherDoj(e.target.value)} />
-                                 <label>Address</label>
+                            <label>Address</label>
                             <Form.Control type="text" placeholder="Address" className='py-2 mb-2'
                                 onChange={(e) => setTeacherAddress(e.target.value)} />
-                                 <label>Father/spouse Name</label>
+                            <label>Father/spouse Name</label>
                             <Form.Control type="text" placeholder="Father/spouse Name" className='py-2 mb-2'
                                 onChange={(e) => setTeacherFathername(e.target.value)} />
-                                 <label>City</label>
+                            <label>City</label>
                             <Form.Control type="text" placeholder="city" className='py-2 mb-2'
                                 onChange={(e) => setTeacherCity(e.target.value)} />
-                                 <label>Pin-code</label>
+                            <label>Pin-code</label>
                             <Form.Control type="number" placeholder="pin code" className='py-2 mb-2'
                                 onChange={(e) => setTeacherPincode(e.target.value)} />
 
