@@ -15,6 +15,8 @@ function Managesectionpage() {
     const [show, setShow] = useState(false);
     const [Studentclassinfo, setStudentclassinfo] = useState([]);
     const [studentClass, setStudentclass] = useState("");
+
+    
     const Addsection = async (e) => {
         e.preventDefault();
 

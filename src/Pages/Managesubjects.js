@@ -10,11 +10,13 @@ function Managesubjects() {
     if (Getautheticate === 'true') {
         return (
             <>
-                <Navbar />
+               <div className="app">
+               <Navbar />
                 <div className="d-flex pt-as">
                     <Sidemenu />
                     <Managesubjectspage />
                 </div>
+               </div>
 
             </>
         );
