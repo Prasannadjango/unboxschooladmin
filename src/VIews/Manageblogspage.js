@@ -119,23 +119,22 @@ export default function AddArticle() {
                             ) :
                                 (
                                     blogs.map((blog, i) => (
-                                        <Col xl={6} key={i} className='mb-3'>
-                                            <Card className='rounded'>
-                                                <Card.Img variant="top" src={blog.imageUrl} className='blog_image' />
-                                                <Card.Body>
-                                                    <Card.Title className='fw-bold'>{blog.title}</Card.Title>
-                                                    <Card.Text>
-                                                        {blog.description}
-                                                    </Card.Text>
-                                                    <Row xl={2}>
-                                                        <Col >
-                                                            <Button variant="primary me-3">Edit</Button>
-                                                        </Col>
-                                                        <Col>
-                                                            <Button variant="danger">Delete</Button>
-                                                        </Col>
-                                                    </Row>
-                                                </Card.Body>
+                                        <Col xl={12} key={i} className='mb-3'>
+                                            <Card >
+                                                <div className='d-flex'>
+                                                    <div className="col-5">
+                                                        <Card.Img variant="top" src={blog.imageUrl} className='blog_image' />
+                                                    </div>
+                                                    <div className="col-7">
+                                                        <Card.Body>
+                                                            <Card.Title className='fw-bold h1'>{blog.title}</Card.Title>
+                                                            <Card.Text className='py-2 fw-normal text-'>
+                                                                {blog.description}
+                                                            </Card.Text>
+                                                           
+                                                        </Card.Body>
+                                                    </div>
+                                                </div>
                                             </Card>
                                         </Col>
 
@@ -181,7 +180,7 @@ export default function AddArticle() {
 
 
                             <button
-                                className="form-control btn-primary mt-2"
+                                className="btn w-100 btn-primary mt-3"
                                 onClick={handlePublish}
                             >
                                 Publish
