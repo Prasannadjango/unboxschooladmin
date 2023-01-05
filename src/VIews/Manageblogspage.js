@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Timestamp, collection, addDoc, getDocs } from "firebase/firestore";
 import { Button, Form, Col, Row, Card } from 'react-bootstrap';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db } from "../firebase-config";
 import CircularProgress from '@mui/material/CircularProgress';
+import { Dashboardcontext } from "../App";
 
 export default function AddArticle() {
 
@@ -102,6 +103,8 @@ export default function AddArticle() {
         );
     };
 
+    const count = useContext(Dashboardcontext);
+
     return (
 
 
@@ -122,6 +125,7 @@ export default function AddArticle() {
                                         <Col xl={12} key={i} className='mb-3'>
                                             <Card >
                                                 <div className='d-flex'>
+                                                    
                                                     <div className="col-5">
                                                         <Card.Img variant="top" src={blog.imageUrl} className='blog_image' />
                                                     </div>

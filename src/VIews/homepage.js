@@ -1,10 +1,20 @@
-import React from "react";
+import React,{useContext} from "react";
 import * as FaIcons from "react-icons/fa";
 import * as BaIcons from "react-icons/bs";
 import { Row, Col, Card } from "react-bootstrap";
-
+import { Dashboardcontext } from "../App";
+import Dashboardresponse from "../components/Dashboardresponse";
 
 export default function Homepage() {
+
+   const {Totalclasses,Totalstudents,Totalteachers,Totalsections,Totalblogs,Totalsubjects} = useContext(Dashboardcontext)
+
+   const [Totalclassesvalue,setTotalclassesvalue] = Totalclasses;
+   const [Totalstudentvalue,setTotalstudentvalue] = Totalstudents;
+   const [Totalteachersvalue, setTotalteachersvalue] = Totalteachers;
+   const [Totalblogsvalue,setTotalblogsvalue] = Totalblogs;
+   const [Totalsubjectsvalue,setTotalsubjectsvalue] = Totalsubjects;
+   const [Totalsectionsvalue,setTotalsectionsvalue] = Totalsections;
    return (
       <>
          <div className='w-100 content-wrapper'>
@@ -20,7 +30,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           1200
+                          {Totalstudentvalue}
                         </h2>
 
                      </Card>
@@ -36,7 +46,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           1600
+                           {Totalteachersvalue}
                         </h2>
 
                      </Card>
@@ -52,7 +62,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           1200
+                           {Totalclassesvalue}
                         </h2>
 
                      </Card>
@@ -68,7 +78,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           10
+                           {Totalsubjectsvalue}
                         </h2>
 
                      </Card>
@@ -84,7 +94,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           10
+                           {Totalsectionsvalue}
                         </h2>
 
                      </Card>
@@ -101,7 +111,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           20
+                           {Totalblogsvalue}
                         </h2>
 
                      </Card>
@@ -109,6 +119,7 @@ export default function Homepage() {
                </Row>
             </div>
          </div>
+         <Dashboardresponse/>
       </>
    );
 }

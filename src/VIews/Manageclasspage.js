@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {  Button, Form, Row, Col, Popover, Modal, OverlayTrigger } from 'react-bootstrap';
 import { collection, addDoc, doc, getDocs, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -8,6 +8,7 @@ import * as HiIcons from "react-icons/hi";
 import * as BsIcons from "react-icons/bs";
 import CircularProgress from '@mui/material/CircularProgress';
 import Managesectionpage from "./Managesectionpage";
+import { Dashboardcontext } from "../App";
 function Manageclasspage() {
 
 
@@ -16,9 +17,12 @@ function Manageclasspage() {
     const [show, setShow] = useState(false);
     const [Studentclassinfo, setStudentclassinfo] = useState([]);
     const [studentClass, setStudentclass] = useState("");
-    const [classcount, setclasscount] = useState("");
+    // const [classcount, setclasscount] = useState("");
 
+    const {Totalclasses} = useContext(Dashboardcontext)
 
+    
+    
     const fetchstudentclass = async () => {
 
         await getDocs(collection(db, "Newclass"))
@@ -27,7 +31,8 @@ function Manageclasspage() {
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setStudentclassinfo(newData);
 
-                setclasscount(newData.length);
+                
+                
             })
 
     }
@@ -140,7 +145,6 @@ function Manageclasspage() {
    
 
 
-
     return (
         <>
 
@@ -152,7 +156,7 @@ function Manageclasspage() {
                             <div className='class_badge'><HiIcons.HiUserGroup /></div>
                             <div className="ps-3">
                                 <h5 className=" ">Total class</h5>
-                                <h1 className="fw-bold">{classcount}</h1>
+                                {/* <h1 className="fw-bold">{classcount}</h1> */}
                             </div>
                         </div>
                     </div>

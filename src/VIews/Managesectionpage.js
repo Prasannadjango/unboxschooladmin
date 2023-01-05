@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, Row, Col } from 'react-bootstrap';
+import {  Button, Form, Row, Col } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -29,6 +29,8 @@ function Managesectionpage() {
             console.error("Error adding document: ", e);
         }
     }
+
+
     const fetchstudentsection = async () => {
         setRetrieving(true)
         await getDocs(collection(db, "Newsection"))

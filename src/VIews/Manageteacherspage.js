@@ -1,8 +1,8 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef} from "react";
 import * as FaIcons from "react-icons/fa";
 import { Table, Button, Spinner, Form, Modal } from 'react-bootstrap';
-import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import CircularProgress from '@mui/material/CircularProgress';
 import TablePagination from '@mui/material/TablePagination';
@@ -10,8 +10,8 @@ import TablePaginationUnstyled, {
     tablePaginationUnstyledClasses as classes,
 } from '@mui/base/TablePaginationUnstyled';
 import { styled } from '@mui/system';
-import SimpleEditable from 'react-bootstrap-simple-editable';
-import '/node_modules/react-bootstrap-simple-editable/dist/index.css';
+import { async } from "@firebase/util";
+
 function Manageteacherspage() {
     const [show, setShow] = useState(false);
 
@@ -46,10 +46,6 @@ function Manageteacherspage() {
     // const [MyInput, setMyInput] = useState('hi');
     // const [MyInput2, setMyInput2] = useState('hi');
 
-
-    // const change = event =>{
-    //     setMyInput(event.target.value)
-    // }
 
     const search = (data) => {
         return data.filter(
@@ -94,7 +90,7 @@ function Manageteacherspage() {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setTeachers(newData);
-                console.log(Teachers, newData);
+
             })
         setTimeout(() => {
             setRetrieving(false)
@@ -215,18 +211,122 @@ function Manageteacherspage() {
     function handleUpdate(e) {
         e.preventDefault();
 
-        const examcollref = doc(db, 'Newteacher', "T5hRdgJ9erm7IifyfFYM")
+        const examcollref = doc(db, 'Newteacher', Teacherid)
         updateDoc(examcollref, {
-            teacherexperience: '1years'
+            teacherfirstname: changedfirstname.current.value,
+            teacherlastname : changedlastname.current.value,
+            teacherfathername:changedfathername.current.value,
+            teachercity:changedcity.current.value,
+            teachermail:changedemail.current.value,
+            teacherphonenumber:changedphonenumber.current.value,
+            teacherDob:changedDob.current.value,
+            teacherdateofjoining:changeddateofjoin.current.value,
+            teacherpincode:changedpincode.current.value,
+            teacherqualification:changedqualification.current.value
+
         }).then(response => {
             alert("updated")
         }).catch(error => {
-            console.log(error.message)
+            alert(error.message)
         })
 
     }
 
-const [Teacherid,setTeacherid] = useState('');
+    const [Teacherid, setTeacherid] = useState('');
+
+
+    const [ResponseTeacherid, setresponseTeacherid] = useState([]);
+
+
+
+    const GetTeacherdata = async () => {
+        const docRef = doc(db, "Newteacher", Teacherid);
+        const docSnap = await getDoc(docRef);
+
+
+        if (docSnap.exists()) {
+            //   console.log("Document data:", docSnap.data());
+            // 
+            let tempArr = [];
+            for (let i = 0; i < 1; i++) {
+                tempArr.push({
+                    teacherfirstname: docSnap.data().teacherfirstname,
+                    teacherlastname: docSnap.data().teacherlastname,
+                    teacherfathername: docSnap.data().teacherfathername,
+                    teachercity: docSnap.data().teacherCity,
+                    teachermail: docSnap.data().teachermail,
+                    teacherphonenumber: docSnap.data().teacherphonenumber,
+                    teacherAddress: docSnap.data().teacherAddress,
+                    teacherDob: docSnap.data().teacherDob,
+                    teacherdateofjoining: docSnap.data().teacherdateofjoining,
+                    teacherpincode: docSnap.data().teacherpincode,
+                    teacherqualification: docSnap.data().teacherqualification,
+
+                 
+
+                })
+            }
+             setresponseTeacherid(tempArr);
+
+         
+           
+            ResponseTeacherid.map((data) => {
+               
+                setUpdatefirstname(data.teacherfirstname)
+                setUpdatelastname(data.teacherlastname)
+                setUpdatefathername(data.teacherfathername)
+                setUpdatecity(data.teachercity)
+                setUpdatemailid(data.teachermail)
+                setUpdatephonenumber(data.teacherphonenumber)
+                setUpdateaddress(data.teacherAddress)
+                setUpdatedob(data.teacherDob)
+                setUpdatedateofjoin(data.teacherdateofjoining)
+                setupdatepincode(data.teacherpincode)
+                setUpdatequlaification(data.teacherqualification)
+                
+            }
+           
+           );
+           
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }
+    useEffect(() => {
+
+        GetTeacherdata();
+
+    },
+        [ResponseTeacherid])
+
+    
+    const[updatefirstname,setUpdatefirstname] = useState('');
+    const[updatelastname,setUpdatelastname] = useState('');
+    const[updatefathername,setUpdatefathername] = useState('');
+    const[updatecity,setUpdatecity] = useState('');
+    const[updatemailid,setUpdatemailid] = useState('');
+    const[updatephonenumber,setUpdatephonenumber] = useState('');
+    const[updateaddress,setUpdateaddress] = useState('');
+    const[updatedob,setUpdatedob] = useState('');
+    const[updatedateofjoin,setUpdatedateofjoin] = useState('');
+    const[updatepincode,setupdatepincode] = useState('');
+    const [updatequalification,setUpdatequlaification] = useState('');
+
+
+  
+    const changedfirstname = useRef(null);
+   const  changedlastname  = useRef(null);
+   const changedfathername = useRef(null);
+   const changedcity =  useRef(null);
+   const changedemail =  useRef(null);
+   const changedphonenumber = useRef(null);
+   const changedDob = useRef(null);
+   const changeddateofjoin = useRef(null);
+   const changedpincode = useRef(null);
+   const changedqualification = useRef(null);
+    
+   
     return (
         <>
             <div className="content-wrapper d-flex">
@@ -267,7 +367,7 @@ const [Teacherid,setTeacherid] = useState('');
                                         <td>{row.teachercity}</td>
 
                                         <td>
-                                            <Button key={i} className='bg-primary text-white me-3  text-center 'onClick={() => setTeacherid(row.id)} ><FaIcons.FaEdit className="fs-6" onClick={handleShow}/></Button>
+                                            <Button key={i} className='bg-primary text-white me-3  text-center ' onClick={() => { setTeacherid(row.id); GetTeacherdata(); }} ><FaIcons.FaEdit className="fs-6" onClick={handleShow} /></Button>
                                             <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
                                         </td>
                                     </tr>
@@ -318,10 +418,47 @@ const [Teacherid,setTeacherid] = useState('');
 
 
 
-                        <Form>
-                           
-                            {/* teacher id is : {Teacherid} */}
-                            <Button variant="primary" onClick={handleClose}>
+                        <Form className='p-3'>
+
+
+                            
+                                        <label>first name</label>
+                                        <Form.Control type="text" ref={changedfirstname}    placeholder="First name"  className='py-2 my-2'
+                                            defaultValue={updatefirstname}/>
+                                        <label>Last name</label>
+                                        <Form.Control type="text" ref={changedlastname} placeholder="First name" className='py-2 my-2'
+                                            defaultValue={updatelastname} />
+                                        <label>Father name</label>
+                                        <Form.Control type="text" ref={changedfathername} placeholder="First name" className='py-2 my-2'
+                                         defaultValue={updatefathername} />
+                                        <label>City</label>
+                                        <Form.Control type="text" ref={changedcity} placeholder="First name" className='py-2 my-2'
+                                         defaultValue={updatecity} />
+
+                                        <label>Mail</label>
+                                        <Form.Control type="text" ref={changedemail} placeholder="First name" className='py-2 my-2'
+                                           defaultValue={updatemailid} />
+                                        <label>Phone number</label>
+                                        <Form.Control type="text" ref={changedphonenumber} placeholder="First name" className='py-2 my-2'
+                                            defaultValue={updatephonenumber}  />
+                                        <label>Dob</label>
+                                        <Form.Control type="date" ref={changedDob} placeholder="First name" className='py-2 my-2'
+                                            defaultValue={updatedob}  />
+                                        <label>date of Joining</label>
+                                        <Form.Control type="date"  ref={changeddateofjoin}  placeholder="First name" className='py-2 my-2'
+                                            defaultValue={updatedateofjoin} />
+                                        <label>Pin code</label>
+                                        <Form.Control type="text" ref={changedpincode} placeholder="First name" className='py-2 my-2'
+                                             defaultValue={updatepincode} />
+                                        <label>Qualification</label>
+                                        <Form.Control type="text" ref={changedqualification}  placeholder="First name" className='py-2 my-2'
+                                          defaultValue={updatequalification}  />
+
+                                   
+
+
+
+                            <Button variant="primary" onClick={handleUpdate}>
                                 Save Changes
                             </Button>
 

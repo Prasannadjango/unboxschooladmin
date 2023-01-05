@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
@@ -27,6 +27,10 @@ function Managestudentspage() {
     const [query, setQuery] = useState('');
     const [retrieving, setRetrieving] = useState(false);
     const [show, setShow] = useState(false);
+
+
+  
+
     // create new student
 
     const Addstudent = async (e) => {
@@ -62,6 +66,7 @@ function Managestudentspage() {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setStudents(newData);
+               
 
             })
         setTimeout(() => {
@@ -105,6 +110,7 @@ function Managestudentspage() {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setStudentclassinfo(newData);
+                // setTotalstudentvalue(newData.value);
 
             })
 

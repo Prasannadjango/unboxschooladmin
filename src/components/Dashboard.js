@@ -2,22 +2,32 @@ import React from "react";
 import Homepage from "../VIews/homepage";
 import Navbar from "./Navbar";
 import Sidemenu from "./Sidebar";
-
+import { Navigate } from "react-router-dom";
 
 function Dashboard() {
-    return (
 
-        <>
-            <div className='app'>
-                <Navbar />
-                <div className="d-flex pt-as">
+    const Getautheticate = localStorage.getItem('login');
 
-                    <Sidemenu />
-                    <Homepage />
+    if (Getautheticate === 'true') {
+        return (
+
+            <>
+                <div className='app'>
+                    <Navbar />
+                    <div className="d-flex pt-as">
+    
+                        <Sidemenu />
+                        <Homepage />
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
+    else {
+        return <Navigate to="/" replace />
+    }
+
+   
 }
 
 export default Dashboard;
