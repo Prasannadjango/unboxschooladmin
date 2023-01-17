@@ -57,55 +57,6 @@ function Manageteacherspage() {
     }
     // Add new teacher
 
-    const Addteacher = async (e) => {
-        e.preventDefault();
-
-        try {
-            const docRef = await addDoc(collection(db, "Newteacher"), {
-                teacherfirstname: teacherfirstName,
-                teacherlast: teacherlastName,
-                teacherphonenumber: teacherphonenumber,
-                teacherAddress: teacherAddress,
-                teacherCity: teacherCity,
-                teacherDob: teacherDob,
-                teacherdateofjoining: teacherDoj,
-                teacherexperience: teacherExperience,
-                teachermail: teacherMail,
-                teacherqualification: teacherQualification,
-                teachercity: teacherCity,
-                teacherfathername: teacherFathername,
-                teacherpincode: teacherPincode
-
-            });
-            alert("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    }
-    //  fetch teacher data
-    const fetchschooldata = async () => {
-        setRetrieving(true)
-        await getDocs(collection(db, "Newteacher"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setTeachers(newData);
-
-            })
-        setTimeout(() => {
-            setRetrieving(false)
-            setShow(!show);
-        }, 1200)
-
-    }
-
-    useEffect(() => {
-
-        fetchschooldata();
-
-    },
-        [])
-
 
     // pagination varibles
     const [page, setPage] = React.useState(0);
@@ -208,98 +159,6 @@ function Manageteacherspage() {
         `,
     );
 
-    function handleUpdate(e) {
-        e.preventDefault();
-
-        const examcollref = doc(db, 'Newteacher', Teacherid)
-        updateDoc(examcollref, {
-            teacherfirstname: changedfirstname.current.value,
-            teacherlastname : changedlastname.current.value,
-            teacherfathername:changedfathername.current.value,
-            teachercity:changedcity.current.value,
-            teachermail:changedemail.current.value,
-            teacherphonenumber:changedphonenumber.current.value,
-            teacherDob:changedDob.current.value,
-            teacherdateofjoining:changeddateofjoin.current.value,
-            teacherpincode:changedpincode.current.value,
-            teacherqualification:changedqualification.current.value
-
-        }).then(response => {
-            alert("updated")
-        }).catch(error => {
-            alert(error.message)
-        })
-
-    }
-
-    const [Teacherid, setTeacherid] = useState('');
-
-
-    const [ResponseTeacherid, setresponseTeacherid] = useState([]);
-
-
-
-    const GetTeacherdata = async () => {
-        const docRef = doc(db, "Newteacher", Teacherid);
-        const docSnap = await getDoc(docRef);
-
-
-        if (docSnap.exists()) {
-            //   console.log("Document data:", docSnap.data());
-            // 
-            let tempArr = [];
-            for (let i = 0; i < 1; i++) {
-                tempArr.push({
-                    teacherfirstname: docSnap.data().teacherfirstname,
-                    teacherlastname: docSnap.data().teacherlastname,
-                    teacherfathername: docSnap.data().teacherfathername,
-                    teachercity: docSnap.data().teacherCity,
-                    teachermail: docSnap.data().teachermail,
-                    teacherphonenumber: docSnap.data().teacherphonenumber,
-                    teacherAddress: docSnap.data().teacherAddress,
-                    teacherDob: docSnap.data().teacherDob,
-                    teacherdateofjoining: docSnap.data().teacherdateofjoining,
-                    teacherpincode: docSnap.data().teacherpincode,
-                    teacherqualification: docSnap.data().teacherqualification,
-
-                 
-
-                })
-            }
-             setresponseTeacherid(tempArr);
-
-         
-           
-            ResponseTeacherid.map((data) => {
-               
-                setUpdatefirstname(data.teacherfirstname)
-                setUpdatelastname(data.teacherlastname)
-                setUpdatefathername(data.teacherfathername)
-                setUpdatecity(data.teachercity)
-                setUpdatemailid(data.teachermail)
-                setUpdatephonenumber(data.teacherphonenumber)
-                setUpdateaddress(data.teacherAddress)
-                setUpdatedob(data.teacherDob)
-                setUpdatedateofjoin(data.teacherdateofjoining)
-                setupdatepincode(data.teacherpincode)
-                setUpdatequlaification(data.teacherqualification)
-                
-            }
-           
-           );
-           
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }
-    useEffect(() => {
-
-        GetTeacherdata();
-
-    },
-        [ResponseTeacherid])
-
     
     const[updatefirstname,setUpdatefirstname] = useState('');
     const[updatelastname,setUpdatelastname] = useState('');
@@ -357,7 +216,15 @@ function Manageteacherspage() {
                             <tbody className="position-relative tbscrollable">
 
 
-                                {(rowsPerPage > 0
+                                {
+                                  retrieving ? (
+                               
+                                    <div className="Loader">
+                                        <h6 className="text-center">Loading...</h6>
+                                    </div>
+                                 
+                                ) :
+                                (rowsPerPage > 0
                                     ? search(Teachers).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     : Teachers
                                 ).map((row, i) => (
@@ -367,7 +234,7 @@ function Manageteacherspage() {
                                         <td>{row.teachercity}</td>
 
                                         <td>
-                                            <Button key={i} className='bg-primary text-white me-3  text-center ' onClick={() => { setTeacherid(row.id); GetTeacherdata(); }} ><FaIcons.FaEdit className="fs-6" onClick={handleShow} /></Button>
+                                            <Button key={i} className='bg-primary text-white me-3  text-center '  ><FaIcons.FaEdit className="fs-6" onClick={handleShow} /></Button>
                                             <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
                                         </td>
                                     </tr>
@@ -458,7 +325,7 @@ function Manageteacherspage() {
 
 
 
-                            <Button variant="primary" onClick={handleUpdate}>
+                            <Button variant="primary" >
                                 Save Changes
                             </Button>
 
@@ -509,7 +376,7 @@ function Manageteacherspage() {
                                 onChange={(e) => setTeacherPincode(e.target.value)} />
 
 
-                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={Addteacher}>
+                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' >
                                 Add New teacher
                             </Button>
 

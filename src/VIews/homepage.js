@@ -7,14 +7,7 @@ import Dashboardresponse from "../components/Dashboardresponse";
 
 export default function Homepage() {
 
-   const {Totalclasses,Totalstudents,Totalteachers,Totalsections,Totalblogs,Totalsubjects} = useContext(Dashboardcontext)
-
-   const [Totalclassesvalue,setTotalclassesvalue] = Totalclasses;
-   const [Totalstudentvalue,setTotalstudentvalue] = Totalstudents;
-   const [Totalteachersvalue, setTotalteachersvalue] = Totalteachers;
-   const [Totalblogsvalue,setTotalblogsvalue] = Totalblogs;
-   const [Totalsubjectsvalue,setTotalsubjectsvalue] = Totalsubjects;
-   const [Totalsectionsvalue,setTotalsectionsvalue] = Totalsections;
+  
    return (
       <>
          <div className='w-100 content-wrapper'>
@@ -30,7 +23,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                          {Totalstudentvalue}
+                          40
                         </h2>
 
                      </Card>
@@ -46,7 +39,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           {Totalteachersvalue}
+                         5
                         </h2>
 
                      </Card>
@@ -62,7 +55,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           {Totalclassesvalue}
+                          20
                         </h2>
 
                      </Card>
@@ -78,7 +71,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           {Totalsubjectsvalue}
+                          40
                         </h2>
 
                      </Card>
@@ -94,7 +87,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           {Totalsectionsvalue}
+                         20
                         </h2>
 
                      </Card>
@@ -111,7 +104,7 @@ export default function Homepage() {
 
                         </div>
                         <h2 className="fw-bolder pt-3">
-                           {Totalblogsvalue}
+                          10
                         </h2>
 
                      </Card>

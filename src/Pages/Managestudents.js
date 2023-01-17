@@ -5,9 +5,9 @@ import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function Managestudents() {
-    const Getautheticate = localStorage.getItem('login');
+    // const Getautheticate = localStorage.getItem('login');
 
-    if (Getautheticate === 'true') {
+    // if (Getautheticate === 'true') {
         return (
             <>
                 <div className="app">
@@ -20,10 +20,10 @@ function Managestudents() {
 
             </>
         );
-    }
-    else {
-        return <Navigate to="/" replace />
-    }
+    // }
+    // else {
+    //     return <Navigate to="/" replace />
+    // }
 
 }
 export default Managestudents;

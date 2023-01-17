@@ -1,21 +1,25 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Sidemenu from "../components/Sidebar";
-import Manageclasspage from "../VIews/Manageclasspage";
+
 import { Navigate } from "react-router-dom";
-function Manageclass() {
+import Managetimetablepage from "../VIews/Managetimetablepage";
+
+export default function Managetimetable() {
     // const Getautheticate = localStorage.getItem('login');
 
     // if (Getautheticate === 'true') {
         return (
             <>
-               <div className="app">
-               <Navbar />
-                <div className="d-flex pt-as">
-                    <Sidemenu />
-                    <Manageclasspage />
+
+                <div className='app'>
+                    <Navbar />
+                    <div className="d-flex pt-as">
+                        <Sidemenu />
+                        <Managetimetablepage/>
+                    </div>
                 </div>
-               </div>
+
             </>
         );
     // }
@@ -24,5 +28,3 @@ function Manageclass() {
     // }
 
 }
-
-export default Manageclass;

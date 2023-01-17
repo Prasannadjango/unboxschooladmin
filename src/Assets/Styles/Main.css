@@ -1,4 +1,3 @@
-
 * {
   font-family: var(--body-font);
 }
@@ -37,9 +36,8 @@
 }
 .Loader {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-top: 50px;
+  top: 40%;
+  left: 40%;
 }
 table {
   margin: 0 !important;
@@ -55,11 +53,10 @@ table {
   background-color: var(--hover-menu-bg);
   border-radius: 50px;
   color: white;
-  
+
   font-size: 30px;
-  
 }
-.class_badge1{
+.class_badge1 {
   width: 45px;
   height: 45px;
   display: grid;
@@ -69,10 +66,10 @@ table {
   color: white;
   font-size: 30px;
 }
-.classpage_heading{
+.classpage_heading {
   color: var(--primary--color);
 }
-.classlist_container{
+.classlist_container {
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -81,13 +78,12 @@ table {
 }
 .content-container > div {
   height: fit-content;
-  
 }
-.bd-rd15{
+.bd-rd15 {
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.bgclr1{
+.bgclr1 {
   background-color: #ebebeb !important;
   height: 100%;
   padding: 17px;
@@ -107,7 +103,6 @@ table {
   justify-content: space-between;
   align-items: center;
   align-content: center;
- 
 }
 .pt-as {
   padding-top: 68px;
@@ -209,15 +204,15 @@ table {
   color: rgb(29, 173, 209);
   font-weight: bold;
 }
-.app-card1  > div > h5 {
+.app-card1 > div > h5 {
   color: rgb(46, 224, 70);
   font-weight: bold;
 }
-.app-card2  > div > h5 {
+.app-card2 > div > h5 {
   color: rgb(218, 57, 35);
   font-weight: bold;
 }
-.app-card4  > div > h5 {
+.app-card4 > div > h5 {
   color: rgb(170, 134, 35);
   font-weight: bold;
 }
@@ -268,26 +263,100 @@ p {
 .totalclass_container {
   border-radius: 15px;
 }
-.Delete_btn{
+.Delete_btn {
   border-radius: 100px;
-   
-    height: 30px;
-   
-  
-    width: 30px;
-    
-  
+
+  height: 30px;
+
+  width: 30px;
 }
-.Delete_btn>button{
+.Delete_btn > button {
   border-radius: inherit;
   height: 100%;
   width: 100%;
   font-size: 10px;
   text-align: center;
- 
 }
-
-
+/* .sidebar-container{
+  height: 900px !important;
+} */
+.css-dip3t8 {
+  height: 410px !important;
+}
+.Leader_bg {
+  background-color: var(--content-bg);
+  border-radius: 20px;
+}
+.Leaderboard_section {
+  justify-content: center;
+  align-items: center;
+}
+.Leaderboard_section > div:nth-child(1) {
+  border-radius: 50px;
+  border: 2px solid #49a9f8;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  position: relative;
+  place-items: center;
+}
+.Leaderboard_section > div:nth-child(2) {
+  border-radius: 50px;
+  border: 2px solid #3bf083;
+  width: 100px;
+  height: 100px;
+  display: grid;
+  position: relative;
+  margin: 0 70px;
+  place-items: center;
+}
+.Leaderboard_section > div:nth-child(3) {
+  border-radius: 50px;
+  border: 2px solid #ee566a;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  position: relative;
+  place-items: center;
+}
+.lead_count1{
+  background-color: #49a9f8;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  bottom: -12px;
+}
+.lead_count2{
+  background-color: #3bf083;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  bottom: -12px;
+}
+.lead_count3{
+  background-color: #ee566a;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  bottom: -12px;
+}
+.result_table{
+  display: block;
+  height: 180px !important;
+  overflow-y: scroll
+}
+.form-check-input{
+  background-color: var(--search-bg) !important;
+}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   outline: none;
@@ -363,7 +432,7 @@ body {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 img {
@@ -414,9 +483,13 @@ body.light-mode .video-bg:before {
   top: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.45) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
   -webkit-backdrop-filter: saturate(3);
-          backdrop-filter: saturate(3);
+  backdrop-filter: saturate(3);
 }
 
 .app {
@@ -428,7 +501,7 @@ body.light-mode .video-bg:before {
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: 1250px;
   border-radius: 14px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -467,7 +540,8 @@ body.light-mode .video-bg:before {
     display: none;
   }
 }
-.header-menu a.is-active, .header-menu a:hover {
+.header-menu a.is-active,
+.header-menu a:hover {
   color: var(--theme-color);
   border-bottom: 2px solid var(--theme-color);
 }
@@ -505,24 +579,23 @@ body.light-mode .video-bg:before {
     display: none;
   }
 }
-th{
+th {
   padding: 8px !important;
 }
-.content-bg{
- color: var(--theme-color) !important;
+.content-bg {
+  color: var(--theme-color) !important;
   background-color: var(--content-bg);
- border-radius: 10px;
- 
+  border-radius: 10px;
 }
-.form-select:focus{
+.form-select:focus {
   color: var(--theme-color);
 }
-.form-select{
+.form-select {
   border: 0 !important;
   color: var(--theme-color) !important;
-  background-color: var(--search-bg) !important; 
+  background-color: var(--search-bg) !important;
 }
-.search-bar  {
+.search-bar {
   width: 100%;
   height: 100%;
   border: none !important;
@@ -602,7 +675,7 @@ th{
   height: 32px;
   border-radius: 50%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border: 2px solid var(--theme-color);
   margin-left: 22px;
 }
@@ -730,10 +803,9 @@ th{
   background-color: var(--theme-bg-color);
 }
 
-.overflow-container{
+.overflow-container {
   overflow-x: scroll;
-    height: 400px;
-
+  height: 400px;
 }
 @media screen and (max-width: 510px) {
   .content-wrapper {
@@ -745,7 +817,22 @@ th{
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top, #cf4af3, #e73bd7, #f631bc, #fd31a2, #ff3a8b, #ff4b78, #ff5e68, #ff705c, #ff8c51, #ffaa49, #ffc848, #ffe652);
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+    linear-gradient(
+      to right top,
+      #cf4af3,
+      #e73bd7,
+      #f631bc,
+      #fd31a2,
+      #ff3a8b,
+      #ff4b78,
+      #ff5e68,
+      #ff705c,
+      #ff8c51,
+      #ffaa49,
+      #ffc848,
+      #ffe652
+    );
   border-radius: 14px;
   padding: 20px 40px;
 }
@@ -821,10 +908,10 @@ th{
 .content-wrapper-img {
   width: 186px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin-top: -25px;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
 }
 @media screen and (max-width: 570px) {
   .content-wrapper-img {
@@ -947,7 +1034,8 @@ th{
   height: 5px;
   background-color: var(--button-inactive);
   border-radius: 50%;
-  box-shadow: 7px 0 0 0 var(--button-inactive), 14px 0 0 0 var(--button-inactive);
+  box-shadow: 7px 0 0 0 var(--button-inactive),
+    14px 0 0 0 var(--button-inactive);
   margin: 0 12px;
 }
 
@@ -1121,10 +1209,10 @@ th{
 .app-card3,
 .app-card4,
 .app-card5,
-.classcount-card{
+.classcount-card {
   display: flex;
   flex-direction: column;
-  
+
   font-size: 16px;
   background-color: var(--content-bg);
   border-radius: 14px !important;
@@ -1133,46 +1221,44 @@ th{
   cursor: pointer;
   transition: 0.3s ease;
 }
-.manageclass_scroller{
+.manageclass_scroller {
   overflow-y: scroll;
   height: 500px;
   color: var(--theme-color);
   padding: 20px;
-  
-  
+
   background-color: var(--theme-bg-color);
 }
-.css-dip3t8{
+.css-dip3t8 {
   background-color: transparent !important;
   color: var(--theme-color);
 }
-.css-1bdadyq:hover{
+.css-1bdadyq:hover {
   background-color: inherit !important;
- 
 }
-.app-card:hover ,
+.app-card:hover,
 .app-card1:hover,
-.app-card2:hover ,
+.app-card2:hover,
 .app-card3:hover,
-.app-card4:hover ,
-.app-card5:hover{
+.app-card4:hover,
+.app-card5:hover {
   transform: scale(1.02);
   background-color: var(--theme-bg-color);
 }
-thead, tbody tr {
+thead,
+tbody tr {
   display: table;
   width: 100%;
-  table-layout: fixed;/* even columns width , fix width of table too*/
+  table-layout: fixed; /* even columns width , fix width of table too*/
 }
-.tbscrollable{
+.tbscrollable {
   display: block;
   height: 220px;
   overflow: auto;
 }
 .app-card svg {
- 
   border-radius: 6px;
- 
+
   flex-shrink: 0;
 }
 .app-card + .app-card {
@@ -1224,5 +1310,3 @@ thead, tbody tr {
   background: var(--scrollbar-bg);
   border-radius: 10px;
 }
-
-

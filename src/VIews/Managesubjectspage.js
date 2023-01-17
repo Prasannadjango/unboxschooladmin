@@ -31,7 +31,7 @@ function Managesubjectspage() {
         setTimeout(() => {
             setRetrieving(false)
             setShow(!show);
-        }, 1200)
+        }, 5000)
     }
 
     useEffect(() => {
@@ -136,9 +136,9 @@ function Managesubjectspage() {
 
                         <Row xl={3} className="p-4 justify-content-center">
                             {retrieving ? (
-                                <div className='Loader'>
-                                    <CircularProgress color="primary" />
-                                </div>
+                               
+                                <p className="text-center">Loading...</p>
+                             
                             ) :
 
 

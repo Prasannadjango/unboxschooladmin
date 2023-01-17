@@ -6,9 +6,9 @@ import { Navigate } from "react-router-dom";
 
 function Dashboard() {
 
-    const Getautheticate = localStorage.getItem('login');
+    // const Getautheticate = localStorage.getItem('login');
 
-    if (Getautheticate === 'true') {
+    // if (Getautheticate === 'true') {
         return (
 
             <>
@@ -22,10 +22,10 @@ function Dashboard() {
                 </div>
             </>
         );
-    }
-    else {
-        return <Navigate to="/" replace />
-    }
+    // }
+    // else {
+    //     return <Navigate to="/" replace />
+    // }
 
    
 }

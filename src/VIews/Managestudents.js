@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Table, Button, Form } from 'react-bootstrap';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
@@ -29,96 +29,15 @@ function Managestudentspage() {
     const [show, setShow] = useState(false);
 
 
-  
+
 
     // create new student
-
-    const Addstudent = async (e) => {
-        e.preventDefault();
-
-        try {
-            const docRef = await addDoc(collection(db, "Newstudent"), {
-                studentfirstname: studentfirstName,
-                studentlastname: studentlastName,
-                studentDob: studentDob,
-                studentClass: studentClass,
-                studentsection: studentSection,
-                studentparentname: studentParentName,
-                studentpincode: studentPincode,
-                studentphonenumber: studentPhonenumber,
-                studentalternatephonenumber: studentAlternatephonenumber,
-                studentaddress: studentAddress,
-                studentcity: studentCity
-
-            });
-            alert("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    }
-
-    //  read student data
-
-    const fetchstudentdata = async () => {
-        setRetrieving(true)
-        await getDocs(collection(db, "Newstudent"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setStudents(newData);
-               
-
-            })
-        setTimeout(() => {
-            setRetrieving(false)
-            setShow(!show);
-        }, 1200)
-
-
-
-    }
-
-    useEffect(() => {
-        fetchstudentdata();
-    }, [])
 
 
 
     //  fetch Student section data
 
-    const fetchstudentsection = async () => {
 
-        await getDocs(collection(db, "Newsection"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setStudentsectioninfo(newData);
-
-            })
-
-    }
-
-    useEffect(() => {
-        fetchstudentsection();
-    }, [])
-
-    // fetch student class 
-    const fetchstudentclass = async () => {
-
-        await getDocs(collection(db, "Newclass"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setStudentclassinfo(newData);
-                // setTotalstudentvalue(newData.value);
-
-            })
-
-    }
-
-    useEffect(() => {
-        fetchstudentclass();
-    }, [])
 
     const search = (data) => {
 
@@ -256,71 +175,79 @@ function Managestudentspage() {
                         <div>
                             <Table className='content-bg ' >
 
-                            <thead>
-                                <tr>
+                                <thead>
+                                    <tr>
 
-                                    <th>first-Name</th>
-                                    <th>Last-name</th>
-                                    <th>Class</th>
-                                    <th>section</th>
-                                    <th >Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className=" position-relative tbscrollable">
-
-
-
-                                {(rowsPerPage > 0
-                                    ? search(Students).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    : Students
-                                ).map((row, i) => (
-                                    <tr key={i}>
-                                        <td>{row.studentfirstname}</td>
-                                        <td>{row.studentlastname}</td>
-                                        <td>{row.studentClass}</td>
-                                        <td>{row.studentsection}</td>
-                                        <td>
-                                                    <Button className='bg-primary text-white me-3  text-center '><FaIcons.FaEdit className="fs-6"/></Button> 
-                                                    <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
-                                                </td>
+                                        <th>first-Name</th>
+                                        <th>Last-name</th>
+                                        <th>Class</th>
+                                        <th>section</th>
+                                        <th >Actions</th>
                                     </tr>
-                                ))}
-
-                                {emptyRows > 0 && (
-                                    <tr style={{ height: 34 * emptyRows }}>
-                                        <td colSpan={3} />
-                                    </tr>
-                                )}
-
-                            </tbody>
-
-                            <tfoot>
-
-                                <TablePagination
-                                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                                    colSpan={3}
-                                    count={Students.length}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    slotProps={{
-                                        select: {
-                                            'aria-label': 'rows per page',
-                                        },
-                                        actions: {
-                                            showFirstButton: true,
-                                            showLastButton: true,
-                                        },
-                                    }}
-                                    onPageChange={handleChangePage} 
-                                    onRowsPerPageChange={handleChangeRowsPerPage}
-                                    className='bg-clr2 text-light'
-                                />
+                                </thead>
+                                <tbody className=" position-relative tbscrollable">
 
 
 
-                            </tfoot>
+                                    {
+                                        retrieving ? (
 
-                        </Table>
+                                            <div className="Loader">
+                                                <h6 className="text-center">Loading...</h6>
+                                            </div>
+
+                                        ) :
+                                            (rowsPerPage > 0
+                                                ? search(Students).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                : Students
+                                            ).map((row, i) => (
+                                                <tr key={i}>
+                                                    <td>{row.studentfirstname}</td>
+                                                    <td>{row.studentlastname}</td>
+                                                    <td>{row.studentClass}</td>
+                                                    <td>{row.studentsection}</td>
+                                                    <td>
+                                                        <Button className='bg-primary text-white me-3  text-center '><FaIcons.FaEdit className="fs-6" /></Button>
+                                                        <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+
+                                    {emptyRows > 0 && (
+                                        <tr style={{ height: 34 * emptyRows }}>
+                                            <td colSpan={3} />
+                                        </tr>
+                                    )}
+
+                                </tbody>
+
+                                <tfoot>
+
+                                    <TablePagination
+                                        rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                        colSpan={3}
+                                        count={Students.length}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        slotProps={{
+                                            select: {
+                                                'aria-label': 'rows per page',
+                                            },
+                                            actions: {
+                                                showFirstButton: true,
+                                                showLastButton: true,
+                                            },
+                                        }}
+                                        onPageChange={handleChangePage}
+                                        onRowsPerPageChange={handleChangeRowsPerPage}
+                                        className='bg-clr2 text-light'
+                                    />
+
+
+
+                                </tfoot>
+
+                            </Table>
                         </div>
                     </div>
 
@@ -388,7 +315,7 @@ function Managestudentspage() {
                             <Form.Control type="text" placeholder="city" className='py-2 mb-2'
                                 onChange={(e) => setStudentcity(e.target.value)}
                             />
-                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' onClick={Addstudent}>
+                            <Button variant="primary" type='submit' className='w-100 py-2 my-2' >
                                 Add New Student
                             </Button>
                         </Form>

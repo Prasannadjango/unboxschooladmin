@@ -1,28 +1,30 @@
+
 import React from "react";
 import Navbar from "../components/Navbar";
 import Sidemenu from "../components/Sidebar";
-import Manageclasspage from "../VIews/Manageclasspage";
+
 import { Navigate } from "react-router-dom";
-function Manageclass() {
+import Announcementpage from "../VIews/Announcementpage";
+
+function Announcement() {
     // const Getautheticate = localStorage.getItem('login');
 
     // if (Getautheticate === 'true') {
         return (
             <>
-               <div className="app">
-               <Navbar />
-                <div className="d-flex pt-as">
-                    <Sidemenu />
-                    <Manageclasspage />
+                <div className='app'>
+                    <Navbar />
+                    <div className='d-flex pt-as'>
+                        <Sidemenu />
+                         <Announcementpage/>
+                    </div>
                 </div>
-               </div>
             </>
         );
     // }
     // else {
     //     return <Navigate to="/" replace />
     // }
-
 }
 
-export default Manageclass;
+export default Announcement;

@@ -135,7 +135,7 @@ useEffect(() => {
 
 
 
-
+// fetech school data
 
 
 

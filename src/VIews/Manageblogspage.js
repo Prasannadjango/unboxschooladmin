@@ -117,7 +117,7 @@ export default function AddArticle() {
                         <Row className='position-relative'>
                             {retrieving ? (
                                 <div className='Loader'>
-                                    <CircularProgress color="primary" />
+                                    <p>Loading...</p>
                                 </div>
                             ) :
                                 (
@@ -149,7 +149,7 @@ export default function AddArticle() {
                     </div>
                 </div>
                 <div className="col-4">
-                    <div className="app-card p-4">
+                    <div className="app-card overflow-container p-4">
                         <Form >
                             <h4 className="pb-4">Create article</h4>
                             <div className="form-group">
@@ -162,24 +162,23 @@ export default function AddArticle() {
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
-
-
+                           
+                           <label htmlFor="">Image</label>
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                className="form-control my-2"
+                                onChange={(e) => handleImageChange(e)}
+                            />
+                               
                             <label htmlFor="">Description</label>
                             <textarea
                                 name="description"
                                 className="form-control"
                                 value={formData.description}
                                 onChange={(e) => handleChange(e)}
-                            />
-
-
-                            <label htmlFor="">Image</label>
-                            <input
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                className="form-control"
-                                onChange={(e) => handleImageChange(e)}
+                                as="textarea" rows={6} 
                             />
 
 

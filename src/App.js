@@ -14,6 +14,10 @@ import Managesection from "./Pages/Managesection";
 import Managesubjects from "./Pages/Managesubjects";
 import Manageblogs from "./Pages/Manageblogs";
 import Dashboardresponse from "./components/Dashboardresponse";
+import Managesettings from "./Pages/Managesettings";
+import Managetimetable from "./Pages/Managetimetable";
+import Leaderboard from "./Pages/Leaderboard";
+import Announcement from "./Pages/Announcement";
 
 export const Dashboardcontext = createContext()
 
@@ -27,16 +31,20 @@ function App() {
   const [Totalsections,setTotalsections] = useState('');
   const [Totalblogs,setTotalblogs] = useState('');
 
+  const[Authenticateduser,setauthenticateduser] = useState('');
+  const[Authenticateduserinfo,setauthenticateduserinfo] = useState('');
 
  
   return (
     <>
+   
       <Dashboardcontext.Provider value={{Totalstudents:[Totalstudents, setTotalstudents],
       Totalclasses:[Totalclasses,setTotalclasses],Totalteachers:[Totalteachers, setTotalteachers],
       Totalsubjects:[Totalsubjects,setTotalsubjects],Totalsections:[Totalsections,setTotalsections],
-      Totalblogs:[Totalblogs,setTotalblogs]
+      Totalblogs:[Totalblogs,setTotalblogs],Authuser:[Authenticateduser,setauthenticateduser],
+      Authuserinfo:[Authenticateduserinfo,setauthenticateduserinfo]
       }}>
-        <React.StrictMode>
+       
           <ProSidebarProvider>
             <BrowserRouter>
               <Routes >
@@ -48,6 +56,11 @@ function App() {
                 <Route path='/Managesection' element={<Managesection />} />
                 <Route path='/Managesubjects' element={<Managesubjects />} />
                 <Route path="/Manageblogs" element={<Manageblogs />} />
+                <Route path="/Managesettings" element={<Managesettings/>} />
+                <Route path="/Managetimetable" element={<Managetimetable/>} />
+                <Route path="/Leaderboard" element={<Leaderboard/>} />
+                <Route path="/Announcement" element={<Announcement/>} />
+                
             
 
               </Routes>
@@ -55,8 +68,9 @@ function App() {
             </BrowserRouter>
           </ProSidebarProvider>
 
-        </React.StrictMode>
+      
       </Dashboardcontext.Provider>
+     
     </>
   );
 }

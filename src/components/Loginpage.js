@@ -1,41 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Row, Col, Form } from "react-bootstrap";
+import React, { useState, useEffect, useContext ,useRef} from "react";
+import { useNavigate ,Link} from "react-router-dom";
+import { Row, Col, Form, FormControl } from "react-bootstrap";
 import Loginpageimg from '../Assets/Images/Logoimage.svg';
 import { TextField, Button } from '@mui/material';
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
-  
-  } from "firebase/auth";
-  import { app } from '../firebase-config';
+
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebase-config";
+
+
 
 function Loginpage() {
+
     const navigate = useNavigate();
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
+
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const schoolmailarr = [];
+    const schoolpasswordarr = [];
+
+    const fetchschooldata = async () => {
+
+        await getDocs(collection(db, "New school"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+               
+
+                newData.map((data) => {
+                    schoolmailarr.push(data.schoolemail)
+                    schoolpasswordarr.push(data.schoolpassword)
+                });
+            })
+
+    }
+
+    useEffect(() => {
+        fetchschooldata();
+
+    }, [])
+
+
     
-    const auth = getAuth(app);
-    const signin = (e) =>{
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          localStorage.setItem('login','true');
-          console.log(user);
-          
-           navigate('/home');
-           
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-           alert('invalid user-name and password')
-        });
-      
-      }
+    // const signin = (e) => {
+    //     e.preventDefault();
+    //   if((schoolmailarr.includes(emailRef.current.value) === true ) && (schoolpasswordarr.includes(passwordRef.current.value) === true)){
+    //         localStorage.setItem('login','true');
+    //          navigate('/home');
+    //     }
+    //     else{
+    //         alert('invalid username or password');
+    //     }
+        
+    // }
 
     return (
         <>
@@ -46,22 +62,28 @@ function Loginpage() {
                         <img src={Loginpageimg} />
                     </Col>
                     <Col >
-                        <Form className='Login_form' onSubmit={signin}>
+                        <Form className='Login_form'>
                             <h3 className='pb-3 fw-bold'>Login</h3>
                             <div>
-                                <TextField id="outlined-basic" label="E-mail" variant="outlined" className='w-100 '
+                                <FormControl
+                                ref={emailRef}
+                                id="outlined-basic" label="E-mail" variant="outlined" className='w-100 bg-white text-dark'
                                     type="text"
                                     name="Email"
-                                    value={email}
-                                    onChange={(e) => setemail(e.target.value)} />
+                                    
+                                   />
                             </div>
                             <div className="my-4">
-                                <TextField id="outlined-basic" label="Password" variant="outlined" type='password' className='w-100 '
+                                <FormControl
+                                   ref={passwordRef}
+                                   id="outlined-basic" label="Password" variant="outlined" type='password' className='w-100 bg-white text-dark'
 
                                     name="Password"
-                                    onChange={(e) => setpassword(e.target.value)} />
+                                  />
                             </div>
-                            <Button variant="contained" type='sumbit' className='w-100 py-3 text-uppercase Login_Btn' >Login</Button>
+                           <Link to='/home'>
+                           <Button variant="contained" type='sumbit' className='w-100 py-3 text-uppercase Login_Btn' >Login</Button>
+                           </Link>
                         </Form>
                     </Col>
                 </Row>
