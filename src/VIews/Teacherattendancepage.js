@@ -167,96 +167,105 @@ export default function Teacherattendancepage() {
 
                     <div className="h-260">
 
-                        <Table className='content-bg ' >
+                        <div>
+                            <Table className='content-bg ' >
 
-                            <thead>
-                                <tr>
+                                <thead>
+                                    <tr>
 
-                                    <th className="col-1">S:no</th>
-                                    <th>Roll.no</th>
-                                    <th>Student Name</th>
-                                    <th>Status</th>
-                                    <th>Update Attendance</th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody className=" position-relative tbscrollable">
+                                        <th className="col-1">S:no</th>
+                                        <th>Roll.no</th>
+                                        <th>Student Name</th>
+                                        <th>Status</th>
+                                        <th>Update Attendance</th>
 
 
+                                    </tr>
+                                </thead>
+                                <tbody className=" position-relative tbscrollable">
 
-                                {/* {
-                    retrieving ? (
 
-                        <div className="Loader">
-                            <h6 className="text-center">Loading...</h6>
-                        </div>
 
-                    ) :
-                        (rowsPerPage > 0
-                            ? search(Students).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            : Students
-                        ).map((row, i) => (
-                            <tr key={i}>
-                                
+                                    {/* {
+retrieving ? (
+
+<div className="Loader">
+<h6 className="text-center">Loading...</h6>
+</div>
+
+) :
+(rowsPerPage > 0
+? search(Students).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+: Students
+).map((row, i) => (
+<tr key={i}>
+    
+   
+</tr>
+))}
+
+{emptyRows > 0 && (
+<tr style={{ height: 34 * emptyRows }}>
+<td colSpan={3} />
+</tr>
+)} */}
+                                    <tr>
+                                        <td className="col-1">1</td>
+                                        <td>#12C001</td>
+                                        <td>Pranav</td>
+                                        <td>
+                                            <span className="bg-success status-container">Present</span>
+                                        </td>
+                                        <td>
+                                            <div className="d-flex">
+                                                <Form.Check
+                                                    inline
+                                                    label="Present"
+
+                                                />
+                                                <Form.Check
+                                                    inline
+                                                    label="Absent"
+
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="col-1">2</td>
+                                        <td>#12C002</td>
+                                        <td>Hari</td>
+                                        <td>
+                                            <span className="bg-danger status-container">Absent</span>
+                                        </td>
+                                        <td>
+                                            <div className="d-flex">
+                                                <Form.Check
+                                                    inline
+                                                    label="Present"
+
+                                                />
+                                                <Form.Check
+                                                    inline
+                                                    label="Absent"
+
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+
                                
-                            </tr>
-                        ))}
+                                </tbody>
 
-                {emptyRows > 0 && (
-                    <tr style={{ height: 34 * emptyRows }}>
-                        <td colSpan={3} />
-                    </tr>
-                )} */}
-                                <tr>
-                                    <td className="col-1">1</td>
-                                    <td>#12C001</td>
-                                    <td>Pranav</td>
-                                    <td>
-                                        <span className="bg-success status-container">Present</span>
-                                    </td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <Form.Check
-                                                inline
-                                                label="Present"
 
-                                            />
-                                            <Form.Check
-                                                inline
-                                                label="Absent"
 
-                                            />
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="col-1">2</td>
-                                    <td>#12C002</td>
-                                    <td>Hari</td>
-                                    <td>
-                                        <span className="bg-danger status-container">Absent</span>
-                                    </td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <Form.Check
-                                                inline
-                                                label="Present"
 
-                                            />
-                                            <Form.Check
-                                                inline
-                                                label="Absent"
 
-                                            />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
 
-                            <tfoot>
 
-                                <TablePagination
+
+                            </Table>
+                            {/* <TablePagination
                                     rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                                     colSpan={3}
                                     count={Students.length}
@@ -274,13 +283,8 @@ export default function Teacherattendancepage() {
                                     onPageChange={handleChangePage}
                                     onRowsPerPageChange={handleChangeRowsPerPage}
                                     className='bg-clr2 text-light'
-                                />
-
-
-
-                            </tfoot>
-
-                        </Table>
+                                /> */}
+                        </div>
                     </div>
                 </div>
             </div>

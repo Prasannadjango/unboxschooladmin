@@ -20,6 +20,8 @@ import Leaderboard from "./Pages/Leaderboard";
 import Announcement from "./Pages/Announcement";
 import Attendance from "./Pages/Attendance";
 import Teacherattendance from "./Pages/Teacherattendance";
+import Createreportcard from "./Pages/Createreportcard";
+import Createtopics from "./Pages/Createtopics";
 
 export const Dashboardcontext = createContext()
 
@@ -64,6 +66,9 @@ function App() {
                 <Route path="/Announcement" element={<Announcement/>} />
                 <Route path="/Attendance" element={<Attendance/>} />
                 <Route path="/TeacherAttendance" element={<Teacherattendance/>} />
+                <Route path="/Reportcard" element={<Createreportcard/>} />
+                <Route path="/Topics" element={<Createtopics/>} />
+
                 
             
 

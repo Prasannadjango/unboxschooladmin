@@ -366,6 +366,28 @@ p {
   font-size: 13px;
   border-radius: 15px;
 }
+.Popup_container{
+  background-color: var(--dropdown-bg);
+}
+.Report_card{
+  background-color: var(--content-bg);
+  
+}
+.Reportcard-profile{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  display: grid;
+  place-items: center;
+  background-color: #555555;
+}
+.Topics-points{
+  background-color: var(--primary--color);
+  color: #fff;
+  padding: 13px;
+  border-radius: 22px;
+  margin: 8px 4px;
+}
 .css-mf2zkt{
   width: auto !important;
 }
@@ -1273,9 +1295,7 @@ tbody tr {
 
   flex-shrink: 0;
 }
-.app-card + .app-card {
-  margin-left: 20px;
-}
+
 .app-card span {
   display: flex;
   align-items: center;
@@ -1288,6 +1308,7 @@ tbody tr {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
 }
+
 .app-card-buttons {
   display: flex;
   align-items: center;
@@ -1321,4 +1342,9 @@ tbody tr {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg);
   border-radius: 10px;
+}
+.Topics-maincontainer{
+  height: 350px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

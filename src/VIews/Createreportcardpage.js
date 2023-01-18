@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button, Form, Modal } from 'react-bootstrap';
 import TablePagination from '@mui/material/TablePagination';
 import TablePaginationUnstyled, {
     tablePaginationUnstyledClasses as classes,
@@ -7,7 +7,7 @@ import TablePaginationUnstyled, {
 import * as FaIcons from "react-icons/fa";
 import { styled } from '@mui/system';
 
-export default function Attendancepage() {
+export default function Createreportcardpage() {
     const [query, setQuery] = useState('');
     const [retrieving, setRetrieving] = useState(false);
     const [show, setShow] = useState(false);
@@ -123,12 +123,16 @@ export default function Attendancepage() {
 
 
     }
+    const [showreportcard, setShowreportcard] = useState(false);
+
+    const handleClose = () => setShowreportcard(false);
+    const handleShow = () => setShowreportcard(true);
     return (
         <>
             <div className='w-100 content-wrapper'>
 
                 <div className="app-card">
-                    <h5>Student Attendance List</h5>
+                    <h5>Report card List</h5>
                     <div className="mb-3">
                         <form className=" d-flex">
                             <div>
@@ -147,12 +151,8 @@ export default function Attendancepage() {
                                     <option value="3">c</option>
                                 </Form.Select>
                             </div>
-                            <div>
-                                <Form.Control type="date" />
-                                   
-                               
-                            </div>
-                           <Button className="ms-3">Get Attendance List</Button>
+
+                            <Button className="ms-3">Get Report card</Button>
                         </form>
                     </div>
                     {/* <div className='p-3 d-flex justify-content-between'>
@@ -171,11 +171,11 @@ export default function Attendancepage() {
                             <thead>
                                 <tr>
 
-                                    <th>S:no</th>
+                                    <th >S:no</th>
                                     <th>Roll.no</th>
                                     <th>Student Name</th>
-                                    <th>Status</th>
-                                   
+
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody className=" position-relative tbscrollable">
@@ -205,22 +205,30 @@ export default function Attendancepage() {
                                         <td colSpan={3} />
                                     </tr>
                                 )} */}
-                                     <tr>
-                                        <td>1</td>
-                                        <td>#12C001</td>
-                                        <td>Pranav</td>
-                                        <td>
-                                            <span className="bg-success status-container">Present</span>
-                                        </td>
-                                     </tr>
-                                     <tr>
-                                        <td>2</td>
-                                        <td>#12C002</td>
-                                        <td>Hari</td>
-                                        <td>
-                                            <span className="bg-danger status-container">Absent</span>
-                                        </td>
-                                     </tr>
+                                <tr>
+                                    <td >1</td>
+                                    <td>#12C001</td>
+                                    <td>Pranav</td>
+
+                                    <td>
+                                        <div className="d-flex">
+                                            <Button className="bg-success border border-0 me-2" onClick={handleShow}><FaIcons.FaEye /></Button>
+                                            <Button className="bg-primary border border-0"><FaIcons.FaPen /></Button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>#12C002</td>
+                                    <td>Hari</td>
+
+                                    <td>
+                                        <div className="d-flex">
+                                            <Button className="bg-success border border-0 me-2" onClick={handleShow}><FaIcons.FaEye /></Button>
+                                            <Button className="bg-primary border border-0"><FaIcons.FaPen /></Button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
 
                             {/* <tfoot>
@@ -250,6 +258,68 @@ export default function Attendancepage() {
                             </tfoot> */}
 
                         </Table>
+                    </div>
+
+                    <div>
+                        <Modal show={showreportcard} onHide={handleClose} >
+
+                            <div className='Reportcard_container Popup_container text-white'>
+                                <Modal.Header closeButton>
+
+                                </Modal.Header>
+                                <div className="Report_card m-3">
+                                    <h4 className="p-3">Matthew</h4>
+                                    <div className="mx-3">
+                                        <div className='d-flex justify-content-center'>
+                                            <div className='Reportcard-profile'>
+                                                <FaIcons.FaUserCircle className='fs-1' />
+                                            </div>
+                                        </div>
+                                        <Table className="text-white my-3">
+
+                                            <tbody>
+                                                <tr >
+                                                    <td>English</td>
+                                                    <td>30</td>
+
+                                                </tr>
+                                                <tr >
+                                                    <td>Language</td>
+                                                    <td>80</td>
+
+                                                </tr>
+                                                <tr >
+                                                    <td>Maths</td>
+                                                    <td>30</td>
+
+                                                </tr>
+                                                <tr >
+                                                    <td>Cs</td>
+                                                    <td>80</td>
+
+                                                </tr>
+                                                <tr >
+                                                    <td>Percentage</td>
+                                                    <td>60%</td>
+
+                                                </tr>
+                                                <tr >
+                                                    <td>Status</td>
+                                                    <td>
+                                                        <span className="status-container bg-success fw-bold">
+                                                            Pass
+                                                        </span>
+                                                    </td>
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                                </div>
+                            </div>
+                        </Modal>
                     </div>
                 </div>
             </div>
