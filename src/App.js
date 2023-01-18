@@ -18,6 +18,7 @@ import Managesettings from "./Pages/Managesettings";
 import Managetimetable from "./Pages/Managetimetable";
 import Leaderboard from "./Pages/Leaderboard";
 import Announcement from "./Pages/Announcement";
+import Attendance from "./Pages/Attendance";
 
 export const Dashboardcontext = createContext()
 
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/Managetimetable" element={<Managetimetable/>} />
                 <Route path="/Leaderboard" element={<Leaderboard/>} />
                 <Route path="/Announcement" element={<Announcement/>} />
+                <Route path="/Attendance" element={<Attendance/>} />
                 
             
 

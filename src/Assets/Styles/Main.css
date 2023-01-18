@@ -357,6 +357,18 @@ p {
 .form-check-input{
   background-color: var(--search-bg) !important;
 }
+.h-260{
+  height: 260px !important;
+}
+.status-container{
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 15px;
+}
+.css-mf2zkt{
+  width: auto !important;
+}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   outline: none;
