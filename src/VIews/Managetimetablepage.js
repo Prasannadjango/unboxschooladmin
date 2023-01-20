@@ -23,6 +23,12 @@ export default function Managetimetablepage() {
                         <tbody>
                             <tr>
                                 <td>Monday</td>
+                                <td>Maths</td>
+                                <td>English</td>
+                                <td>Language</td>
+                                <td>Science</td>
+                                <td>Social science</td>
+                                <td>Monday</td>
                                 
                                 
                                

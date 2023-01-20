@@ -1348,3 +1348,12 @@ tbody tr {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.Topic_deletebtn{
+  position: absolute;
+  top: -24px;
+  right: -5px;
+  border-radius: 50px;
+}
+.Topic_deletebtn>button{
+  border-radius: inherit;
+}
