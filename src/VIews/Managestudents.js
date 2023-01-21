@@ -186,10 +186,36 @@ function Managestudentspage() {
                                     </tr>
                                 </thead>
                                 <tbody className=" position-relative tbscrollable">
+                                <tr>
+                                    <td>prasanna</td>
+                                    <td>kumar</td>
+                                    <td>10</td>
+                                    <td>B</td>
+
+                                    <td>
+                                        <Button className='me-2'><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
 
 
+                                </tr>
+                                <tr>
+                                    <td>parama</td>
+                                    <td>Mayandi</td>
+                                    <td>10</td>
+                                    <td>B</td>
 
-                                    {
+                                    <td>
+                                        <Button className='me-2'><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
+
+                                    {/* {
                                         retrieving ? (
 
                                             <div className="Loader">
@@ -211,7 +237,7 @@ function Managestudentspage() {
                                                         <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
                                                     </td>
                                                 </tr>
-                                            ))}
+                                            ))} */}
 
                                     {emptyRows > 0 && (
                                         <tr style={{ height: 34 * emptyRows }}>

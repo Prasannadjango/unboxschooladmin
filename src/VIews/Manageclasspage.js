@@ -156,7 +156,7 @@ function Manageclasspage() {
                             <div className='class_badge'><HiIcons.HiUserGroup /></div>
                             <div className="ps-3">
                                 <h5 className=" ">Total class</h5>
-                                {/* <h1 className="fw-bold">{classcount}</h1> */}
+                                <h1 className="fw-bold">10</h1>
                             </div>
                         </div>
                     </div>

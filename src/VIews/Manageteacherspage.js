@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Table, Button, Spinner, Form, Modal } from 'react-bootstrap';
 import { collection, addDoc, getDocs, updateDoc, doc, getDoc } from "firebase/firestore";
@@ -159,33 +159,33 @@ function Manageteacherspage() {
         `,
     );
 
-    
-    const[updatefirstname,setUpdatefirstname] = useState('');
-    const[updatelastname,setUpdatelastname] = useState('');
-    const[updatefathername,setUpdatefathername] = useState('');
-    const[updatecity,setUpdatecity] = useState('');
-    const[updatemailid,setUpdatemailid] = useState('');
-    const[updatephonenumber,setUpdatephonenumber] = useState('');
-    const[updateaddress,setUpdateaddress] = useState('');
-    const[updatedob,setUpdatedob] = useState('');
-    const[updatedateofjoin,setUpdatedateofjoin] = useState('');
-    const[updatepincode,setupdatepincode] = useState('');
-    const [updatequalification,setUpdatequlaification] = useState('');
+
+    const [updatefirstname, setUpdatefirstname] = useState('');
+    const [updatelastname, setUpdatelastname] = useState('');
+    const [updatefathername, setUpdatefathername] = useState('');
+    const [updatecity, setUpdatecity] = useState('');
+    const [updatemailid, setUpdatemailid] = useState('');
+    const [updatephonenumber, setUpdatephonenumber] = useState('');
+    const [updateaddress, setUpdateaddress] = useState('');
+    const [updatedob, setUpdatedob] = useState('');
+    const [updatedateofjoin, setUpdatedateofjoin] = useState('');
+    const [updatepincode, setupdatepincode] = useState('');
+    const [updatequalification, setUpdatequlaification] = useState('');
 
 
-  
+
     const changedfirstname = useRef(null);
-   const  changedlastname  = useRef(null);
-   const changedfathername = useRef(null);
-   const changedcity =  useRef(null);
-   const changedemail =  useRef(null);
-   const changedphonenumber = useRef(null);
-   const changedDob = useRef(null);
-   const changeddateofjoin = useRef(null);
-   const changedpincode = useRef(null);
-   const changedqualification = useRef(null);
-    
-   
+    const changedlastname = useRef(null);
+    const changedfathername = useRef(null);
+    const changedcity = useRef(null);
+    const changedemail = useRef(null);
+    const changedphonenumber = useRef(null);
+    const changedDob = useRef(null);
+    const changeddateofjoin = useRef(null);
+    const changedpincode = useRef(null);
+    const changedqualification = useRef(null);
+
+
     return (
         <>
             <div className="content-wrapper d-flex">
@@ -215,7 +215,7 @@ function Manageteacherspage() {
                             </thead>
                             <tbody className="position-relative tbscrollable">
 
-
+                                {/* 
                                 {
                                   retrieving ? (
                                
@@ -238,7 +238,45 @@ function Manageteacherspage() {
                                             <Button className='bg-danger text-white border-0'><FaIcons.FaTrashAlt /></Button>
                                         </td>
                                     </tr>
-                                ))}
+                                ))} */}
+                                <tr>
+                                    <td>prasanna</td>
+                                    <td>1232144</td>
+                                    <td>Madurai</td>
+                                    <td>
+                                        <Button className='me-2'><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Parama</td>
+                                    <td>1232144</td>
+                                    <td>theni</td>
+                                    <td>
+
+
+                                        <Button className="mx-1"><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Pranav</td>
+                                    <td>123214</td>
+                                    <td>Madurai</td>
+                                    <td>
+                                        <Button className='me-2 '><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
 
                                 {emptyRows > 0 && (
                                     <tr style={{ height: 34 * emptyRows }}>
@@ -288,40 +326,40 @@ function Manageteacherspage() {
                         <Form className='p-3'>
 
 
-                            
-                                        <label>first name</label>
-                                        <Form.Control type="text" ref={changedfirstname}    placeholder="First name"  className='py-2 my-2'
-                                            defaultValue={updatefirstname}/>
-                                        <label>Last name</label>
-                                        <Form.Control type="text" ref={changedlastname} placeholder="First name" className='py-2 my-2'
-                                            defaultValue={updatelastname} />
-                                        <label>Father name</label>
-                                        <Form.Control type="text" ref={changedfathername} placeholder="First name" className='py-2 my-2'
-                                         defaultValue={updatefathername} />
-                                        <label>City</label>
-                                        <Form.Control type="text" ref={changedcity} placeholder="First name" className='py-2 my-2'
-                                         defaultValue={updatecity} />
 
-                                        <label>Mail</label>
-                                        <Form.Control type="text" ref={changedemail} placeholder="First name" className='py-2 my-2'
-                                           defaultValue={updatemailid} />
-                                        <label>Phone number</label>
-                                        <Form.Control type="text" ref={changedphonenumber} placeholder="First name" className='py-2 my-2'
-                                            defaultValue={updatephonenumber}  />
-                                        <label>Dob</label>
-                                        <Form.Control type="date" ref={changedDob} placeholder="First name" className='py-2 my-2'
-                                            defaultValue={updatedob}  />
-                                        <label>date of Joining</label>
-                                        <Form.Control type="date"  ref={changeddateofjoin}  placeholder="First name" className='py-2 my-2'
-                                            defaultValue={updatedateofjoin} />
-                                        <label>Pin code</label>
-                                        <Form.Control type="text" ref={changedpincode} placeholder="First name" className='py-2 my-2'
-                                             defaultValue={updatepincode} />
-                                        <label>Qualification</label>
-                                        <Form.Control type="text" ref={changedqualification}  placeholder="First name" className='py-2 my-2'
-                                          defaultValue={updatequalification}  />
+                            <label>first name</label>
+                            <Form.Control type="text" ref={changedfirstname} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatefirstname} />
+                            <label>Last name</label>
+                            <Form.Control type="text" ref={changedlastname} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatelastname} />
+                            <label>Father name</label>
+                            <Form.Control type="text" ref={changedfathername} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatefathername} />
+                            <label>City</label>
+                            <Form.Control type="text" ref={changedcity} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatecity} />
 
-                                   
+                            <label>Mail</label>
+                            <Form.Control type="text" ref={changedemail} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatemailid} />
+                            <label>Phone number</label>
+                            <Form.Control type="text" ref={changedphonenumber} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatephonenumber} />
+                            <label>Dob</label>
+                            <Form.Control type="date" ref={changedDob} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatedob} />
+                            <label>date of Joining</label>
+                            <Form.Control type="date" ref={changeddateofjoin} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatedateofjoin} />
+                            <label>Pin code</label>
+                            <Form.Control type="text" ref={changedpincode} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatepincode} />
+                            <label>Qualification</label>
+                            <Form.Control type="text" ref={changedqualification} placeholder="First name" className='py-2 my-2'
+                                defaultValue={updatequalification} />
+
+
 
 
 
