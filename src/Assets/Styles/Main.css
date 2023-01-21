@@ -1371,3 +1371,6 @@ tbody tr {
   background-color: #434578 !important;
   border: 0;
 }
+.accordion-button::after{
+   background-image:url(../Images/icons8-chevron-24.png) !important;
+}
