@@ -1357,3 +1357,17 @@ tbody tr {
 .Topic_deletebtn>button{
   border-radius: inherit;
 }
+.accordion-button{
+ background-color: var(--dropdown-bg ) !important;
+ color: #fff !important;
+ border-radius: 10px !important;
+ margin-bottom: 10px !important;
+}
+.accordion-item{
+  background-color: transparent !important;
+  border: 0 !important;
+}
+.Addconduct_container>div:nth-child(1)>button{
+  background-color: #434578 !important;
+  border: 0;
+}

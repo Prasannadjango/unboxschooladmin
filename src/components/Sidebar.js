@@ -19,6 +19,8 @@ function Sidemenu() {
                <MenuItem icon={<FaIcons.FaUserFriends className="fs-5" />} routerLink={<Link to="/Attendance" />} >Students Attendance</MenuItem>
                <MenuItem icon={<FaIcons.FaUserTie className="fs-5" />} routerLink={<Link to="/TeacherAttendance" />} >Teachers Attendance</MenuItem>
                <MenuItem icon={<FaIcons.FaRegIdCard className="fs-5" />} routerLink={<Link to="/Reportcard" />} >Create Report card</MenuItem>
+               <MenuItem icon={<FaIcons.FaPencilRuler className="fs-5" />} routerLink={<Link to="/Conductexam" />} >Conduct Exams</MenuItem>
+
                <MenuItem icon={<FaIcons.FaRegCopy className="fs-5" />} routerLink={<Link to="/Topics" />} >Create Topics</MenuItem>
                <MenuItem icon={<FaIcons.FaRegChartBar className="fs-5" />} routerLink={<Link to="/Leaderboard" />} >Leader board</MenuItem>
                <MenuItem icon={<FaIcons.FaBullhorn className="fs-5" />} routerLink={<Link to="/Announcement" />} >Announcement</MenuItem>

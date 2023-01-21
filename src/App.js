@@ -22,6 +22,7 @@ import Attendance from "./Pages/Attendance";
 import Teacherattendance from "./Pages/Teacherattendance";
 import Createreportcard from "./Pages/Createreportcard";
 import Createtopics from "./Pages/Createtopics";
+import Conductexam from "./Pages/Conductexam";
 
 export const Dashboardcontext = createContext()
 
@@ -68,6 +69,8 @@ function App() {
                 <Route path="/TeacherAttendance" element={<Teacherattendance/>} />
                 <Route path="/Reportcard" element={<Createreportcard/>} />
                 <Route path="/Topics" element={<Createtopics/>} />
+                <Route path="/Conductexam" element={<Conductexam/>} />
+
 
                 
             
