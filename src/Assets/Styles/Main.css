@@ -1270,7 +1270,7 @@ th {
 .css-1bdadyq:hover {
   background-color: inherit !important;
 }
-.app-card:hover,
+
 .app-card1:hover,
 .app-card2:hover,
 .app-card3:hover,
@@ -1373,4 +1373,9 @@ tbody tr {
 }
 .accordion-button::after{
    background-image:url(../Images/icons8-chevron-24.png) !important;
+}
+
+.Quesition_appcard>.modal-content{
+  border-radius: 13px;
+  background-color: var(--theme-bg-color) !important;
 }
