@@ -18,7 +18,7 @@ export default function Conductexampage() {
         <>
             <div className="w-100 content-wrapper">
                 <div className="app-card overflow-container">
-
+                      <h3>Conduct Exams</h3>
 
                     <div className="app-card my-4 ">
 
@@ -163,15 +163,7 @@ export default function Conductexampage() {
                                                 <option value="3">12</option>
                                             </Form.Select>
                                         </div>
-                                        <div lassName='mb-2'>
-                                            <label className='pb-2'>subject:</label>
-                                            <Form.Select aria-label="Default select example" className="me-3">
-                                                <option>Choose subject</option>
-                                                <option value="1">Maths</option>
-                                                <option value="2">Social science</option>
-                                                <option value="3"></option>
-                                            </Form.Select>
-                                        </div>
+                                       
                                         <div className='mb-2'>
                                             <label className='pb-2'>Exam Date:</label>
                                             <FormControl type='date' />
