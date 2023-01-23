@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Button, Form, Modal } from 'react-bootstrap';
+import { Table, Button, Form, Modal, FormControl } from 'react-bootstrap';
 import TablePagination from '@mui/material/TablePagination';
 import TablePaginationUnstyled, {
     tablePaginationUnstyledClasses as classes,
@@ -124,36 +124,44 @@ export default function Createreportcardpage() {
 
     }
     const [showreportcard, setShowreportcard] = useState(false);
-
     const handleClose = () => setShowreportcard(false);
     const handleShow = () => setShowreportcard(true);
+
+    const [createreportcard, setCreatereportcard] = useState(false);
+    const handleClose1 = () => setCreatereportcard(false);
+    const handleShow1 = () => setCreatereportcard(true);
+
+
+
     return (
         <>
             <div className='w-100 content-wrapper'>
 
                 <div className="app-card">
-                    <h5>Report card List</h5>
-                    <div className="mb-3">
-                        <form className=" d-flex">
-                            <div>
-                                <Form.Select aria-label="Default select example">
-                                    <option>Choose class</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </Form.Select>
-                            </div>
-                            <div className="mx-4">
-                                <Form.Select aria-label="Default select example">
-                                    <option>Choose section</option>
-                                    <option value="1">a</option>
-                                    <option value="2">b</option>
-                                    <option value="3">c</option>
-                                </Form.Select>
-                            </div>
+                    <div className="d-flex justify-content-between">
+                        <div><h4 >Report card List</h4></div>
+                        <div className="mb-3">
+                            <form className=" d-flex ">
+                                <div>
+                                    <Form.Select aria-label="Default select example">
+                                        <option>Choose class</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </Form.Select>
+                                </div>
+                                <div className="mx-4">
+                                    <Form.Select aria-label="Default select example">
+                                        <option>Choose section</option>
+                                        <option value="1">a</option>
+                                        <option value="2">b</option>
+                                        <option value="3">c</option>
+                                    </Form.Select>
+                                </div>
 
-                            <Button className="ms-3">Get Report card</Button>
-                        </form>
+                                <Button className="ms-3">Get Report card</Button>
+                            </form>
+                        </div>
                     </div>
                     {/* <div className='p-3 d-flex justify-content-between'>
                         <h3>Attendance</h3>
@@ -165,7 +173,9 @@ export default function Createreportcardpage() {
                     </div> */}
 
                     <div className="h-260">
-
+                        <div className="d-flex mb-3">
+                            <Button className='bg-primary' onClick={handleShow1}>Create a report card</Button>
+                        </div>
                         <Table className='content-bg ' >
 
                             <thead>
@@ -318,6 +328,68 @@ export default function Createreportcardpage() {
                                         </Table>
                                     </div>
                                 </div>
+                            </div>
+                        </Modal>
+                    </div>
+
+                    <div>
+                        <Modal show={createreportcard} onHide={handleClose1} >
+
+                            <div className='Reportcard_container Popup_container text-white'>
+                                <Modal.Header closeButton>
+                                  <h4>  Create New Report card</h4>
+                                </Modal.Header>
+                               <form className="m-3">
+                                <div className="mb-3">
+                                    <label className="pb-3">Class:</label>
+                                    <Form.Select aria-label="Default select example">
+                                        <option>Choose class</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </Form.Select>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Section:</label>
+                                    <Form.Select aria-label="Default select example">
+                                        <option>Choose section</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </Form.Select>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Students:</label>
+                                    <Form.Select aria-label="Default select example">
+                                        <option>Choose Student..</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </Form.Select>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Maths:</label>
+                                    <FormControl type='text' />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">English:</label>
+                                    <FormControl type='text' />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Social science:</label>
+                                    <FormControl type='text' />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Science:</label>
+                                    <FormControl type='text' />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="pb-3">Grade:</label>
+                                    <FormControl type='text' />
+                                </div>
+
+                                <Button className='btn btn-primary mt-2'>Submit</Button>
+                               </form>
                             </div>
                         </Modal>
                     </div>

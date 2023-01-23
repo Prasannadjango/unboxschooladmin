@@ -1250,7 +1250,7 @@ th {
 .classcount-card {
   display: flex;
   flex-direction: column;
-
+  height: 460px;
   font-size: 16px;
   background-color: var(--content-bg);
   border-radius: 14px !important;
