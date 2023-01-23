@@ -173,7 +173,7 @@ function Managestudentspage() {
                         </div>
 
                         <div>
-                            <Table className='content-bg ' >
+                            <Table className='studentcontent-bg ' >
 
                                 <thead>
                                     <tr>

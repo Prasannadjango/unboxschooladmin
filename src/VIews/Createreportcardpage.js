@@ -137,7 +137,7 @@ export default function Createreportcardpage() {
         <>
             <div className='w-100 content-wrapper'>
 
-                <div className="app-card">
+                <div className="Teachersapp-card">
                     <div className="d-flex justify-content-between">
                         <div><h4 >Report card List</h4></div>
                         <div className="mb-3">
@@ -176,7 +176,7 @@ export default function Createreportcardpage() {
                         <div className="d-flex mb-3">
                             <Button className='bg-primary' onClick={handleShow1}>Create a report card</Button>
                         </div>
-                        <Table className='content-bg ' >
+                        <Table className='reportcardcontent-bg ' >
 
                             <thead>
                                 <tr>

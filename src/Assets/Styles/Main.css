@@ -621,6 +621,13 @@ th {
 .content-bg {
   color: var(--theme-color) !important;
   background-color: var(--content-bg);
+  height: 100vh !important;
+  border-radius: 10px;
+}
+.reportcardcontent-bg,.studentcontent-bg {
+  color: var(--theme-color) !important;
+  background-color: var(--content-bg);
+ 
   border-radius: 10px;
 }
 .form-select:focus {
@@ -1240,7 +1247,18 @@ th {
   flex-wrap: wrap;
   width: calc(100% + 20px);
 }
-
+.Teachersapp-card{
+  display: flex;
+  flex-direction: column;
+   height: 464px;
+  font-size: 16px;
+  background-color: var(--content-bg);
+  border-radius: 14px !important;
+  border: 1px solid var(--theme-bg-color);
+  padding: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 .app-card,
 .app-card1,
 .app-card2,
@@ -1250,7 +1268,7 @@ th {
 .classcount-card {
   display: flex;
   flex-direction: column;
-  height: 460px;
+ 
   font-size: 16px;
   background-color: var(--content-bg);
   border-radius: 14px !important;

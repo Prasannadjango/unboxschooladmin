@@ -166,7 +166,7 @@ export default function Attendancepage() {
 
                     <div className="h-260">
 
-                        <Table className='content-bg ' >
+                        <Table className='studentcontent-bg' >
 
                             <thead>
                                 <tr>

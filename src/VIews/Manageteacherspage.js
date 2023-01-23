@@ -190,7 +190,7 @@ function Manageteacherspage() {
         <>
             <div className="content-wrapper d-flex">
                 <div className='col-8 me-2'>
-                    <div className="app-card">
+                    <div className="Teachersapp-card">
                         <div className='py-2 d-flex justify-content-between'>
                             <h3>Teachers list</h3>
                             <div className="col-7">
@@ -259,6 +259,30 @@ function Manageteacherspage() {
 
 
                                         <Button className="mx-1"><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Pranav</td>
+                                    <td>123214</td>
+                                    <td>Madurai</td>
+                                    <td>
+                                        <Button className='me-2 '><FaIcons.FaPen /></Button>
+                                        <Button variant='danger'><FaIcons.FaTrash /></Button>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Pranav</td>
+                                    <td>123214</td>
+                                    <td>Madurai</td>
+                                    <td>
+                                        <Button className='me-2 '><FaIcons.FaPen /></Button>
                                         <Button variant='danger'><FaIcons.FaTrash /></Button>
 
                                     </td>

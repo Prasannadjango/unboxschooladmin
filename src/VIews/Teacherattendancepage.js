@@ -168,7 +168,7 @@ export default function Teacherattendancepage() {
                     <div className="h-260">
 
                         <div>
-                            <Table className='content-bg ' >
+                            <Table className='studentcontent-bg ' >
 
                                 <thead>
                                     <tr>
