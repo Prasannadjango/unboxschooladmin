@@ -281,7 +281,7 @@ p {
   height: 900px !important;
 } */
 .css-dip3t8 {
-  height: 410px !important;
+  height: 100vh !important;
 }
 .Leader_bg {
   background-color: var(--content-bg);
@@ -441,11 +441,11 @@ body {
   background-image: url(../Images/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
   background-size: cover;
   background-position: center;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 2em;
+  padding: 2em; */
   width: 100%;
   height: 100vh;
 }
@@ -528,15 +528,17 @@ body.light-mode .video-bg:before {
 
 .app {
   background-color: var(--theme-bg-color);
-  max-width: 1250px;
+  /* max-width: 1250px;
   max-height: 860px;
-  height: 90vh;
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  width: 1250px;
-  border-radius: 14px;
+  /* width: 1250px; */
+  width: 100%;
+  height: 100vh; 
+  overflow:hidden;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   font-size: 15px;
@@ -832,14 +834,16 @@ th {
   /* flex-direction: column; */
   color: var(--theme-color);
   padding: 20px;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: var(--theme-bg-color);
 }
-
+.paddingsidebar{
+  margin-bottom: 87px !important;
+}
 .overflow-container {
   overflow-x: scroll;
-  height: 400px;
+  height: 460px;
 }
 @media screen and (max-width: 510px) {
   .content-wrapper {
